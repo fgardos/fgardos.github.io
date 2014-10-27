@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title>Gráficos estadísticos con R</title>
+
+<!-- Styles for R syntax highlighter -->
+<style type="text/css">
+   pre .operator,
+   pre .paren {
+     color: rgb(104, 118, 135)
+   }
+
+   pre .literal {
+     color: #990073
+   }
+
+   pre .number {
+     color: #099;
+   }
+
+   pre .comment {
+     color: #998;
+     font-style: italic
+   }
+
+   pre .keyword {
+     color: #900;
+     font-weight: bold
+   }
+
+   pre .identifier {
+     color: rgb(0, 0, 0);
+   }
+
+   pre .string {
+     color: #d14;
+   }
+</style>
+
+<!-- R syntax highlighter -->
+<script type="text/javascript">
+var hljs=new function(){function m(p){return p.replace(/&/gm,"&amp;").replace(/</gm,"&lt;")}function f(r,q,p){return RegExp(q,"m"+(r.cI?"i":"")+(p?"g":""))}function b(r){for(var p=0;p<r.childNodes.length;p++){var q=r.childNodes[p];if(q.nodeName=="CODE"){return q}if(!(q.nodeType==3&&q.nodeValue.match(/\s+/))){break}}}function h(t,s){var p="";for(var r=0;r<t.childNodes.length;r++){if(t.childNodes[r].nodeType==3){var q=t.childNodes[r].nodeValue;if(s){q=q.replace(/\n/g,"")}p+=q}else{if(t.childNodes[r].nodeName=="BR"){p+="\n"}else{p+=h(t.childNodes[r])}}}if(/MSIE [678]/.test(navigator.userAgent)){p=p.replace(/\r/g,"\n")}return p}function a(s){var r=s.className.split(/\s+/);r=r.concat(s.parentNode.className.split(/\s+/));for(var q=0;q<r.length;q++){var p=r[q].replace(/^language-/,"");if(e[p]){return p}}}function c(q){var p=[];(function(s,t){for(var r=0;r<s.childNodes.length;r++){if(s.childNodes[r].nodeType==3){t+=s.childNodes[r].nodeValue.length}else{if(s.childNodes[r].nodeName=="BR"){t+=1}else{if(s.childNodes[r].nodeType==1){p.push({event:"start",offset:t,node:s.childNodes[r]});t=arguments.callee(s.childNodes[r],t);p.push({event:"stop",offset:t,node:s.childNodes[r]})}}}}return t})(q,0);return p}function k(y,w,x){var q=0;var z="";var s=[];function u(){if(y.length&&w.length){if(y[0].offset!=w[0].offset){return(y[0].offset<w[0].offset)?y:w}else{return w[0].event=="start"?y:w}}else{return y.length?y:w}}function t(D){var A="<"+D.nodeName.toLowerCase();for(var B=0;B<D.attributes.length;B++){var C=D.attributes[B];A+=" "+C.nodeName.toLowerCase();if(C.value!==undefined&&C.value!==false&&C.value!==null){A+='="'+m(C.value)+'"'}}return A+">"}while(y.length||w.length){var v=u().splice(0,1)[0];z+=m(x.substr(q,v.offset-q));q=v.offset;if(v.event=="start"){z+=t(v.node);s.push(v.node)}else{if(v.event=="stop"){var p,r=s.length;do{r--;p=s[r];z+=("</"+p.nodeName.toLowerCase()+">")}while(p!=v.node);s.splice(r,1);while(r<s.length){z+=t(s[r]);r++}}}}return z+m(x.substr(q))}function j(){function q(x,y,v){if(x.compiled){return}var u;var s=[];if(x.k){x.lR=f(y,x.l||hljs.IR,true);for(var w in x.k){if(!x.k.hasOwnProperty(w)){continue}if(x.k[w] instanceof Object){u=x.k[w]}else{u=x.k;w="keyword"}for(var r in u){if(!u.hasOwnProperty(r)){continue}x.k[r]=[w,u[r]];s.push(r)}}}if(!v){if(x.bWK){x.b="\\b("+s.join("|")+")\\s"}x.bR=f(y,x.b?x.b:"\\B|\\b");if(!x.e&&!x.eW){x.e="\\B|\\b"}if(x.e){x.eR=f(y,x.e)}}if(x.i){x.iR=f(y,x.i)}if(x.r===undefined){x.r=1}if(!x.c){x.c=[]}x.compiled=true;for(var t=0;t<x.c.length;t++){if(x.c[t]=="self"){x.c[t]=x}q(x.c[t],y,false)}if(x.starts){q(x.starts,y,false)}}for(var p in e){if(!e.hasOwnProperty(p)){continue}q(e[p].dM,e[p],true)}}function d(B,C){if(!j.called){j();j.called=true}function q(r,M){for(var L=0;L<M.c.length;L++){if((M.c[L].bR.exec(r)||[null])[0]==r){return M.c[L]}}}function v(L,r){if(D[L].e&&D[L].eR.test(r)){return 1}if(D[L].eW){var M=v(L-1,r);return M?M+1:0}return 0}function w(r,L){return L.i&&L.iR.test(r)}function K(N,O){var M=[];for(var L=0;L<N.c.length;L++){M.push(N.c[L].b)}var r=D.length-1;do{if(D[r].e){M.push(D[r].e)}r--}while(D[r+1].eW);if(N.i){M.push(N.i)}return f(O,M.join("|"),true)}function p(M,L){var N=D[D.length-1];if(!N.t){N.t=K(N,E)}N.t.lastIndex=L;var r=N.t.exec(M);return r?[M.substr(L,r.index-L),r[0],false]:[M.substr(L),"",true]}function z(N,r){var L=E.cI?r[0].toLowerCase():r[0];var M=N.k[L];if(M&&M instanceof Array){return M}return false}function F(L,P){L=m(L);if(!P.k){return L}var r="";var O=0;P.lR.lastIndex=0;var M=P.lR.exec(L);while(M){r+=L.substr(O,M.index-O);var N=z(P,M);if(N){x+=N[1];r+='<span class="'+N[0]+'">'+M[0]+"</span>"}else{r+=M[0]}O=P.lR.lastIndex;M=P.lR.exec(L)}return r+L.substr(O,L.length-O)}function J(L,M){if(M.sL&&e[M.sL]){var r=d(M.sL,L);x+=r.keyword_count;return r.value}else{return F(L,M)}}function I(M,r){var L=M.cN?'<span class="'+M.cN+'">':"";if(M.rB){y+=L;M.buffer=""}else{if(M.eB){y+=m(r)+L;M.buffer=""}else{y+=L;M.buffer=r}}D.push(M);A+=M.r}function G(N,M,Q){var R=D[D.length-1];if(Q){y+=J(R.buffer+N,R);return false}var P=q(M,R);if(P){y+=J(R.buffer+N,R);I(P,M);return P.rB}var L=v(D.length-1,M);if(L){var O=R.cN?"</span>":"";if(R.rE){y+=J(R.buffer+N,R)+O}else{if(R.eE){y+=J(R.buffer+N,R)+O+m(M)}else{y+=J(R.buffer+N+M,R)+O}}while(L>1){O=D[D.length-2].cN?"</span>":"";y+=O;L--;D.length--}var r=D[D.length-1];D.length--;D[D.length-1].buffer="";if(r.starts){I(r.starts,"")}return R.rE}if(w(M,R)){throw"Illegal"}}var E=e[B];var D=[E.dM];var A=0;var x=0;var y="";try{var s,u=0;E.dM.buffer="";do{s=p(C,u);var t=G(s[0],s[1],s[2]);u+=s[0].length;if(!t){u+=s[1].length}}while(!s[2]);if(D.length>1){throw"Illegal"}return{r:A,keyword_count:x,value:y}}catch(H){if(H=="Illegal"){return{r:0,keyword_count:0,value:m(C)}}else{throw H}}}function g(t){var p={keyword_count:0,r:0,value:m(t)};var r=p;for(var q in e){if(!e.hasOwnProperty(q)){continue}var s=d(q,t);s.language=q;if(s.keyword_count+s.r>r.keyword_count+r.r){r=s}if(s.keyword_count+s.r>p.keyword_count+p.r){r=p;p=s}}if(r.language){p.second_best=r}return p}function i(r,q,p){if(q){r=r.replace(/^((<[^>]+>|\t)+)/gm,function(t,w,v,u){return w.replace(/\t/g,q)})}if(p){r=r.replace(/\n/g,"<br>")}return r}function n(t,w,r){var x=h(t,r);var v=a(t);var y,s;if(v){y=d(v,x)}else{return}var q=c(t);if(q.length){s=document.createElement("pre");s.innerHTML=y.value;y.value=k(q,c(s),x)}y.value=i(y.value,w,r);var u=t.className;if(!u.match("(\\s|^)(language-)?"+v+"(\\s|$)")){u=u?(u+" "+v):v}if(/MSIE [678]/.test(navigator.userAgent)&&t.tagName=="CODE"&&t.parentNode.tagName=="PRE"){s=t.parentNode;var p=document.createElement("div");p.innerHTML="<pre><code>"+y.value+"</code></pre>";t=p.firstChild.firstChild;p.firstChild.cN=s.cN;s.parentNode.replaceChild(p.firstChild,s)}else{t.innerHTML=y.value}t.className=u;t.result={language:v,kw:y.keyword_count,re:y.r};if(y.second_best){t.second_best={language:y.second_best.language,kw:y.second_best.keyword_count,re:y.second_best.r}}}function o(){if(o.called){return}o.called=true;var r=document.getElementsByTagName("pre");for(var p=0;p<r.length;p++){var q=b(r[p]);if(q){n(q,hljs.tabReplace)}}}function l(){if(window.addEventListener){window.addEventListener("DOMContentLoaded",o,false);window.addEventListener("load",o,false)}else{if(window.attachEvent){window.attachEvent("onload",o)}else{window.onload=o}}}var e={};this.LANGUAGES=e;this.highlight=d;this.highlightAuto=g;this.fixMarkup=i;this.highlightBlock=n;this.initHighlighting=o;this.initHighlightingOnLoad=l;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="\\b(0[xX][a-fA-F0-9]+|(\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.ER="(?![\\s\\S])";this.BE={b:"\\\\.",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE],r:0};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE],r:0};this.CLCM={cN:"comment",b:"//",e:"$"};this.CBLCLM={cN:"comment",b:"/\\*",e:"\\*/"};this.HCM={cN:"comment",b:"#",e:"$"};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.inherit=function(r,s){var p={};for(var q in r){p[q]=r[q]}if(s){for(var q in s){p[q]=s[q]}}return p}}();hljs.LANGUAGES.cpp=function(){var a={keyword:{"false":1,"int":1,"float":1,"while":1,"private":1,"char":1,"catch":1,"export":1,virtual:1,operator:2,sizeof:2,dynamic_cast:2,typedef:2,const_cast:2,"const":1,struct:1,"for":1,static_cast:2,union:1,namespace:1,unsigned:1,"long":1,"throw":1,"volatile":2,"static":1,"protected":1,bool:1,template:1,mutable:1,"if":1,"public":1,friend:2,"do":1,"return":1,"goto":1,auto:1,"void":2,"enum":1,"else":1,"break":1,"new":1,extern:1,using:1,"true":1,"class":1,asm:1,"case":1,typeid:1,"short":1,reinterpret_cast:2,"default":1,"double":1,register:1,explicit:1,signed:1,typename:1,"try":1,"this":1,"switch":1,"continue":1,wchar_t:1,inline:1,"delete":1,alignof:1,char16_t:1,char32_t:1,constexpr:1,decltype:1,noexcept:1,nullptr:1,static_assert:1,thread_local:1,restrict:1,_Bool:1,complex:1},built_in:{std:1,string:1,cin:1,cout:1,cerr:1,clog:1,stringstream:1,istringstream:1,ostringstream:1,auto_ptr:1,deque:1,list:1,queue:1,stack:1,vector:1,map:1,set:1,bitset:1,multiset:1,multimap:1,unordered_set:1,unordered_map:1,unordered_multiset:1,unordered_multimap:1,array:1,shared_ptr:1}};return{dM:{k:a,i:"</",c:[hljs.CLCM,hljs.CBLCLM,hljs.QSM,{cN:"string",b:"'\\\\?.",e:"'",i:"."},{cN:"number",b:"\\b(\\d+(\\.\\d*)?|\\.\\d+)(u|U|l|L|ul|UL|f|F)"},hljs.CNM,{cN:"preprocessor",b:"#",e:"$"},{cN:"stl_container",b:"\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<",e:">",k:a,r:10,c:["self"]}]}}}();hljs.LANGUAGES.r={dM:{c:[hljs.HCM,{cN:"number",b:"\\b0[xX][0-9a-fA-F]+[Li]?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+(?:[eE][+\\-]?\\d*)?L\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+\\.(?!\\d)(?:i\\b)?",e:hljs.IMMEDIATE_RE,r:1},{cN:"number",b:"\\b\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\.\\d+(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"keyword",b:"(?:tryCatch|library|setGeneric|setGroupGeneric)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\.",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\d+(?![\\w.])",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\b(?:function)",e:hljs.IMMEDIATE_RE,r:2},{cN:"keyword",b:"(?:if|in|break|next|repeat|else|for|return|switch|while|try|stop|warning|require|attach|detach|source|setMethod|setClass)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"literal",b:"(?:NA|NA_integer_|NA_real_|NA_character_|NA_complex_)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"literal",b:"(?:NULL|TRUE|FALSE|T|F|Inf|NaN)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"identifier",b:"[a-zA-Z.][a-zA-Z0-9._]*\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"<\\-(?!\\s*\\d)",e:hljs.IMMEDIATE_RE,r:2},{cN:"operator",b:"\\->|<\\-",e:hljs.IMMEDIATE_RE,r:1},{cN:"operator",b:"%%|~",e:hljs.IMMEDIATE_RE},{cN:"operator",b:">=|<=|==|!=|\\|\\||&&|=|\\+|\\-|\\*|/|\\^|>|<|!|&|\\||\\$|:",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"%",e:"%",i:"\\n",r:1},{cN:"identifier",b:"`",e:"`",r:0},{cN:"string",b:'"',e:'"',c:[hljs.BE],r:0},{cN:"string",b:"'",e:"'",c:[hljs.BE],r:0},{cN:"paren",b:"[[({\\])}]",e:hljs.IMMEDIATE_RE,r:0}]}};
+hljs.initHighlightingOnLoad();
+</script>
+
+<!-- MathJax scripts -->
+<script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 13px;
+}
+
+body {
+  max-width: 800px;
+  margin: auto;
+  padding: 1em;
+  line-height: 20px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 {
+   font-size:2.2em;
+}
+
+h2 {
+   font-size:1.8em;
+}
+
+h3 {
+   font-size:1.4em;
+}
+
+h4 {
+   font-size:1.0em;
+}
+
+h5 {
+   font-size:0.9em;
+}
+
+h6 {
+   font-size:0.8em;
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre, img {
+  max-width: 100%;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code {
+  font-size: 92%;
+  border: 1px solid #ccc;
+}
+
+code[class] {
+  background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * {
+      background: transparent !important;
+      color: black !important;
+      filter:none !important;
+      -ms-filter: none !important;
+   }
+
+   body {
+      font-size:12pt;
+      max-width:100%;
+   }
+
+   a, a:visited {
+      text-decoration: underline;
+   }
+
+   hr {
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote {
+      padding-right: 1em;
+      page-break-inside: avoid;
+   }
+
+   tr, img {
+      page-break-inside: avoid;
+   }
+
+   img {
+      max-width: 100% !important;
+   }
+
+   @page :left {
+      margin: 15mm 20mm 15mm 10mm;
+   }
+
+   @page :right {
+      margin: 15mm 10mm 15mm 20mm;
+   }
+
+   p, h2, h3 {
+      orphans: 3; widows: 3;
+   }
+
+   h2, h3 {
+      page-break-after: avoid;
+   }
+}
+</style>
+
+
+
+</head>
+
+<body>
+<h1>Gráficos estadísticos con R</h1>
+
+<p><a href="http://bioinfo.cipf.es/" title="webpage of department">Francisco García García</a> <em>(2014-10-29)</em>  </p>
+
+<hr/>
+
+<h2>1. Gráficos para una variable cuantitativa</h2>
+
+<pre><code class="r"># esto es una linea comentada
+</code></pre>
+
+<p>Nos gustaría representar gráficamente los valores de la siguiente variable cuantitativa, utilizaremos los <em>boxplots</em>:</p>
+
+<pre><code class="r">colesterol &lt;- c(150, 125, 138, 144, 150, 201, 225, 233, 200, 190, 250, 150, 
+    180, 240, 235)  #incluimos los datos de nuestra variable
+boxplot(colesterol)
+</code></pre>
+
+<p><img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-2"/> </p>
+
+<p>Es posible incluir o modificar elementos en el gráfico:</p>
+
+<pre><code class="r">boxplot(colesterol, col = &quot;red&quot;)  #color 
+</code></pre>
+
+<p><img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-3"/> </p>
+
+<pre><code class="r">
+boxplot(colesterol, col = &quot;red&quot;, main = &quot;Exp. 53&quot;, xlab = &quot;Colesterol&quot;)  #título principal y subtítulos para ejes 
+</code></pre>
+
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfgAAAH4CAMAAACR9g9NAAACslBMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB+AACZAACaAAC7AADSAAD/AADMenacAAAA5nRSTlMAAQIDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJScoKSorLC4wMTM0NTY4Ojw9Pj9AQUNERUZISktMTU5PUVJTVFVWV1haW19gYWJjZWZnaGlqa2xub3BxcnN0dXZ3eHl6fH1/gIKEhYaHiImKi42Oj5KTlJWWl5iZmpucnZ+goaOkpaipqqytrq+wsbKztLa3uLm6u7y9vr/AwcLDxMbHyMnLzM3Oz9DR0tPU1dbX2Nna29zd3t/g4eLj5OXm5+jp6uvs7e7v8PHy8/T19vf4+fr7/P3+/////////zRSvFEAAAAJcEhZcwAACxIAAAsSAdLdfvwAAA0wSURBVHic7d37n1R1GcDx7zDIgrDGugOKkOGCSC4RimVGmOKVS1eR1CzylkmmlpcyIe+oCUiYqQXEaqEUymaYGIsttHldkF12dcHB0/X/aGYYFmZmH/xy5nz5nn3O5/0Du3vOeY1n9/Pa3Wd4yTzGAAAAAAAAAAAAAAAAAAAAAACABGkJClYf4pIbC1cMMw1Pbn/9vmOP2J3BqZZg28acBw5xyc97mnOOrn07aHor+MURuzM41RLM+KhL1jUV3swOHjWfCLKDnd8SjoTe8POCd2pH7ApmNwYt39m27dajDlyy/eHCm/Mev8ikd/fUeLhJRK83/IBngwU/Dp5INQZ7dzz6RnBX7xV1wbrNHU+Nz787+qZgkZe7ROSKw91MYyb0dPR0jjGNQXCGGZftGbb/itOD7JMvBVuG5N5tDbrGebxXRKg43J2de/eGILjC5MK/k3u/OZi8/4rRXzrDpF8o/GCY/sPs9oy3W0WUDhrubg6Cq/Phd6SM2XggfMH9wWXjzxptzBPBnCN+i3DhQPhJH2zveq8h/6N+hjkt6BmaHjs2nT/+vfbbzdGbgrOuCpanBrcE53u8WUSn+KP+T2bgH4Orbw5W54a73e+v7Q5uN5kgKPxYn7wnePmN4PcDTuwMtr4bvFbr+44RieJwlzVXBW1Dhu8ILsk9nZvX2vajgb3hzfR1Xa2LhuemvDUdby5t8Hy/cCUX3vctwAfCJxThAQAAAAAAAAAAAAAAAACAC/WXzkN8fT3tKvzsR31/bjiEtc7+le/sK1w9MiLwAOGTifAJRfiEInxCET6hCJ9QhE8owicU4ROK8AlF+IQivJlwr5WVVlctGvbR/8FYILypabCyzu6ylO9PxxLhbTX5voFoEd7WSt83EC3C21K2iILwCUV4Wxf7voFoEd4Ww50lwsca4W0x1VvSFp6p3pK28MoQ3hZTvSVt4RnuLBE+1ghvi6nekrbwTPWWtIVXJorwqWMG9HFUW3im+lJH3/DX3UF2840VW9S1hWe4K/XQqs/VH1X/mSceLD9B+FirOvzOEwpvatvLT2gLz1RfasPcwptZL5af0Baeqb7UlNZXlj24dOM/Pl1+Qlt4Zaqf6gdOm/vdedMGVhzXFp6pvi9TK4Z6deEZ7vrSPqbiEOFjrerwXdm8YG+298iguoK5367ykWOGqb7UxOeWNWQyOyZleo+cu6xg09NVPnLMMNWXSc/fdE5fP+rvXFLtI8OhKH7Hj2t6pFN/eKb6SgPmLamvOKgtPMNdubr8vwxOZ8oPEz7Wqg5/6ssfbplhzNig/IS28Ez1pdbeNOjMtikJCM9UX6r7GGMuWJ/WH16ZqsM3zzQmteIW/eGZ6ktN3/X8SJN5cYP68Ax3ZUbNqTWmZs5t5ccJH2vu/i9bbeGZ6i1pC89Ub0lbeGUIb4up3pK28Ax3lggfa4S3xVRvSVt4pnpL2sIrQ3hbTPWWtIVnuLNE+FgjvC2mekvawjPVW9IWXhnC22Kqt6QtPMOdJcLHGuFtMdVbikH4O1dF6LcRPtaab/j+0ugO3/S/mPrvT31/aQjvBeHdIryM8D4Q3i3CywjvA+HdIryM8D4Q3i3CywjvA+HdIryM8D4Q3i3Cywjvg5Lwfa8fI7xMQ3hx/RjhZRrCi+vHCC/TEF5cP0Z4mYbw4voxwss0hBfXjxFepiG8uH6M8DIV4WP8evWEl6l+vXrCyxy8Xn163/qxny2t8pGrR3iZg9erv3DfPxrYurrKR64e4WWqX6+e8DLVr1dPeJnq16snvIyncz5oCM/TuRA0hI/z+jHCy1SvHyO8jKdzPmgIz9O5EDSE5+lcCCrCSwgvI7xbhJcR3gfCu0V4GeF9ILxbhJcR3gfCu0V4GeF9ILxbhJcR3gfCu0V4GeF9ILxbhJcR3gfCu0V4GeF9ILxbhJcR3gfCu0V4GeF9ILxbhJcR3gfCu0V4GeF9ILxbhJcR3gfCu0V4GeF9ILxbhJcR3gfCu0V4GeF9ILxbhJexfswHDeFZPxaChvCsHwtBQ3jWj4WgITzrx0LQEJ71YyFoCM/6sRBUhOfp3OHTEJ6ncyFoCM/TuRA0hK98OjejuH5sZZWPXD3Cy3g654OG8DydC0FDeJ7OhaAiPOvHDp+G8KwfC0FDeNaPhaAhPOvHQtAQnvVjIWgIz/qxEDSEZ/1YCCrCSwgvI7xbhJcR3gfCu0V4GeF9ILxbhJcR3gfCu0V4GeF9ILxbhJcR3gfCu0V4GeF9ILxbhJcR3gfCu/Xcf2Lq3/f4/tLoDv9qEFf+vzaE98L/10Z1eH7HywjvA+HdIryM8D4Q3i3CywjvA+HdIryM8D4Q3i3CywjvA+HdIryM8D4Q3i3CywjvA+HdIryM8D4oCc/r1R8uDeF5vfoQNITn9epD0BCe9WMhaAjP69WHoCE8r1cfgobwvF59CCrC531seOUxwss0hJ+45rH6X/Vk15xQfoLwMg3hn114R/ttNUPuerz8BOFlGsK/d1zth0OMyXT0Hpm5vuDN1VU+cvUIL6s6/NZpU4Opxkz/S/kJvuNlGsJfvqfj8tcfWLzzwvIThJdpCG/GjzKnXHv9JyuOE16mIryE8DLCu0V4WdXhT9mv/AThZRrCPxV0txWUnyC8TEN4c//Cvo8TXqYi/LRr+j5OeJmK8BLCywjvFuFlhPeB8G4RXkZ4HwjvFuFlhPeB8G4RXkZ4HwjvFuFlhPeB8G4RXkZ4HwjvFuFlhPeB8G4RXkZ4HwjvFuFlhPeB8G4RXkZ4HwjvFuFlhPeB8G4RXkZ4HwjvFuFlhPeB8G4RXkZ4HwjvFuFlhPeB8G4RXkZ4HwjvFuFlhPdBSXjWjx0uDeFZPxaChvCsHwtBQ3jWj4WgITzrx0LQEJ71YyFoCM/6sRBUhM8bwfqxw6Ih/ISmSR9/PrunaUz5CcLLNIRf95Oa5QsH19z5ZPkJwss0hN91nNl8sjGZzt4j568q2LqqykeuHuFlVYd/+qrUfZcZ85UXyk/wHS/TEP6EF1755d6mZ948vfwE4WUawpvUaV+79pszKv6qnvCHoCK8hPAywrtFeBnrx3zQEJ71YyFoCM/6sRBUhGf92OFTEV5CeBnh3SK8jPA+EN4twssI7wPh3SK8jPA+EN4twssI7wPh3SK8jPA+EN4twssI7wPh3SK8jPA+EN4twssI7wPh3frdvyL0zygfi/BOnTErQhujfLDxvr80usNHqsn3DUSL8LZW+r6BaBHe1mDfNxAtwicU4W1d7PsGokV4Wwx3lggfa4S3xVRvSVt4pnpL2sIrQ3hbTPWWtIVnuLNE+FgjvC2mekvawjPVW9IWXhnV68cixVRfKs7rxyLFcFcqzuvHIkX4UnFePxYppvpScV4/Fimm+lJxXj8Gmer1Y5Fiqu/L1FguKogUw11f2iu2jxE+3qoO35XNC/Zmy09oC89UX2ric8saMpkdkzK9Ry4srh9bXeUjxwxTfZn0/E3nJOFHvTJR/I4f1/RIp/7wTPWVBsxbUl9xUFt4hjtLhI81wttiqi8V5/VjkWKqLxXn9WOQqV4/Fimm+jIxXj8WKYY7S4SPNcLbYqq3pC08U70lbeGVIbwtpnpL2sIz3FkifKwR3hZTvSVt4ZnqLWkLrwzhbTHVW9IWnuHOEuFjjfC2mOotaQvPVG9JW3hlCG+Lqd6StvAMd5YIH2uEt8VUb0lbeKZ6S9rCK0N4W0z1lrSFZ7izRPhYI7wtpnpL2sIz1VvSFl4ZwttiqrekLTzDnSXCxxrhzYR7rfzd6qpFw3x/OpYIb2oarEy0uyzl+9OxRPiEInxCsX4soVg/llCsH0so1o8lFOvHEor1YwnF+rGEiuDpXF3+L6vSmfLDhI+1qsOf+vKHW2YYMzYoP0H4WKs6/NqbBp3ZNoXw/U3V4buPMeaC9emDws9cX9DWvh7xtXlkleGbZxqTWnFL5Xc8dJu+6/mRJvPiBsInzag5tcbUzLnN930AAFwR149BN3H9GJST1o9BOWn9GAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD5K6tLm9167vndN6Kc2lp3PVm7iqLwI/c81fzt3zBe3Xbn/Q8InRF3HpNyfX15uzEWvdiwfUWj62Q3dvx5tBt79bvv3zcpg69B9Hzc+s+Clgy5C//b5PxffOWnn9GMXL8k3rW8/r25hk5m1aezknnG57/jix407F5964CL0c5f8pvjO/IeMGbEnnWv61ceMGdydnrXl9FRmUC588ePG3TUHXYR+7guF7/ih8wff+oPc267jc00XdLa2tr47Kj23+Y0FQ3Lhix83thhz4CL0c5nuybk/L25LzV+c+2b+YGCu6dzcL/z0lNTJJ5kT/3BlLnzx48ZNuR8LvRehv7t+2wUnnv/WdWZcx7S6h5flf30f//Y5mTvWmqvXHXdS81yTHV78OB/+wEXo79LfeuX9luvSue/6VztXjCw0PXtj95oGM2xF1/a7jzJLO4fu+zgf/qCLAAAAAAAAAAAAAAAAAAD4P5suVTq99oiOAAAAAElFTkSuQmCC" alt="plot of chunk unnamed-chunk-3"/> </p>
+
+<pre><code class="r">
+
+boxplot(colesterol, col = &quot;red&quot;, main = &quot;Exp. 53&quot;, xlab = &quot;Colesterol&quot;, ylimit = c(0, 
+    250))  #modificamos la escala del eje Y
+</code></pre>
+
+<p><img src="data:image/png;base64,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UIQXivBCEV4owgtFeKEILxThhSK8UIQXivBCEV4owgtFeKEILxThhSK8UIQXivBCEV4owgtFeKEILxThhSK8UIQXivBCEV4owgtFeKEILxThhSK8UIQXivBCEV4owgtFeKEILxThhSK8UIQXivBCEV4owgtFeKEILxThhSK8UIQXivBCEV4owgsVR/jUuBGDrBLeapHDj166r0f3tizP928Q3mqRw69pqCwcWVhRX+ffILzVIofvnOodCtoHVuat8ry0KeIzI0mRwzfWeIfq3QMrBSWeb98e8ZmRpMjhy1v3rK9b13x4ln9j0S0RnxlJij7VZ6pqltRWZXLWCW+15O7jCW81wgtFeKEILxThhSK8UIQXivBCEV4owguVXPgF+16EvVomJRUeAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAHambm957/e7UqYefb/bt9+a+sWLuSRh+7vzTVy78Ututpx4SXogJRy/L/vu1DUpdt/fohole0ysbuzZPU5lHOtq/p7bog2M+elz23LKXzzgJw9sXXun/4OLO+ec/travaWH71RMe3qaqXyue2T09+x3f/7is87FLT5+EYe6m3/V/cNsapSaeSGebfv2XSo3qSlcfuDxVlJcN3/+4rCf/jJMwzH3R+44fc9uoB76fPR6/INt02bHW1taOKemapjeWnZcN3/+4bL9Sp0/CMFfUNTP77/WHUrc9lv1m/iCTbVqT/YGfLk995mJ10R9uzYbvf1z2WvZlYeAkDHd3t1170TVv3qWmH62a8Pj6vh/fF7z15aIf7VB37Jp8cVON6h3f/7gv/OmTMNylv7Xn/f13pbPf9XuPbZzkNb2quevZEjV24/Ejj4xU646N+ehxX/gzTgIAAAAAAAAAAAAAAAAA4H9U3i8mWM1DvgAAAABJRU5ErkJggg==" alt="plot of chunk unnamed-chunk-3"/> </p>
+
+<p>Estos 15 valores corresponden a 3 grupos de ratones, que fueron sometidos a distintos tratamientos. 
+¿Observamos diferencias a partir de su representación gráfica?</p>
+
+<pre><code class="r">colesterol &lt;- c(150, 125, 138, 144, 150, 201, 225, 233, 200, 190, 250, 150, 
+    180, 240, 235)
+tratamientos &lt;- c(&quot;A&quot;, &quot;A&quot;, &quot;A&quot;, &quot;A&quot;, &quot;A&quot;, &quot;B&quot;, &quot;B&quot;, &quot;B&quot;, &quot;B&quot;, &quot;B&quot;, &quot;C&quot;, &quot;C&quot;, 
+    &quot;C&quot;, &quot;C&quot;, &quot;C&quot;)
+
+# así sería más rápido:
+tratamientos &lt;- c(rep(&quot;A&quot;, 5), rep(&quot;B&quot;, 5), rep(&quot;C&quot;, 5))
+
+# representamos la variable colesterol para cada uno de los tres grupos
+# descritos:
+boxplot(colesterol ~ tratamientos)
+</code></pre>
+
+<p><img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-4"/> </p>
+
+<pre><code class="r">
+boxplot(colesterol ~ tratamientos, col = c(&quot;red&quot;, &quot;blue&quot;, &quot;pink&quot;))  #con color
+
+# valores de colesterol superiores a 175 pueden ser peligrosos. Incluimos
+# una línea horizontal que señalice este límite:
+boxplot(colesterol ~ tratamientos, col = c(&quot;red&quot;, &quot;blue&quot;, &quot;pink&quot;))  #con color
+abline(h = 175)
+abline(h = 175, col = &quot;green&quot;, lwd = 2)  #indicamos que sea una línea gruesa y de color verde
+</code></pre>
+
+<p><img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-4"/> </p>
+
+<pre><code class="r">
+# y si nos gustan más las distribuciones horizontales de estos plots:
+boxplot(colesterol ~ tratamientos, col = c(&quot;red&quot;, &quot;blue&quot;, &quot;pink&quot;), horizontal = TRUE)
+abline(v = 175, col = &quot;green&quot;, lwd = 2)
+</code></pre>
+
+<p><img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-4"/> </p>
+
+<h2>2. Gráficos para una variable cualitativa o categórica</h2>
+
+<h2>3. Representación gráfica de dos variables cuantitativas (diagramas de dispersión o de puntos):</h2>
+
+<p>Links interesantes con información complementaria</p>
+
+<p><a href="http://www.statmethods.net/">Quick-R</a>   Muy directo!</p>
+
+<p><a href="http://ggplot2.org/">ggplot2</a>  Paquete de funciones que personalizan cualquier tipo de gráfico.
+R se puede utilizar como calculadora</p>
+
+<pre><code class="r">2 + 2
+</code></pre>
+
+<pre><code>#&gt; [1] 4
+</code></pre>
+
+<pre><code class="r">2 * 3
+</code></pre>
+
+<pre><code>#&gt; [1] 6
+</code></pre>
+
+<p>La asignacion de valores se hace utilizando: <code>&lt;-</code> </p>
+
+<pre><code class="r">variableA &lt;- 3
+variableA
+</code></pre>
+
+<pre><code>#&gt; [1] 3
+</code></pre>
+
+<pre><code class="r">variableA * 2
+</code></pre>
+
+<pre><code>#&gt; [1] 6
+</code></pre>
+
+<p>Todas las funciones en R van siempre seguidas de parentesis
+que envuelven los argumentos de la funcion</p>
+
+<pre><code class="r">sqrt(3)
+</code></pre>
+
+<pre><code>#&gt; [1] 1.732
+</code></pre>
+
+<pre><code class="r">sqrt(variableA)
+</code></pre>
+
+<pre><code>#&gt; [1] 1.732
+</code></pre>
+
+<pre><code class="r">SQRT(variableA)  #R es _case sensitive_ no funciona en mayusculas
+</code></pre>
+
+<pre><code>#&gt; Error: could not find function &quot;SQRT&quot;
+</code></pre>
+
+<pre><code class="r">variableA
+</code></pre>
+
+<pre><code>#&gt; [1] 3
+</code></pre>
+
+<pre><code class="r">VARIABLEA
+</code></pre>
+
+<pre><code>#&gt; Error: object &#39;VARIABLEA&#39; not found
+</code></pre>
+
+<pre><code class="r">sqrt(&quot;variableA&quot;)  #cada funcion esta definida para un tipo o clase de argumentos
+</code></pre>
+
+<pre><code>#&gt; Error: non-numeric argument to mathematical function
+</code></pre>
+
+<h2>Clases de variables; la FUNCION class</h2>
+
+<pre><code class="r">class(1)
+</code></pre>
+
+<pre><code>#&gt; [1] &quot;numeric&quot;
+</code></pre>
+
+<pre><code class="r">class(&quot;adjgfagkjg&quot;)
+</code></pre>
+
+<pre><code>#&gt; [1] &quot;character&quot;
+</code></pre>
+
+<pre><code class="r">class(&quot;1&quot;)
+</code></pre>
+
+<pre><code>#&gt; [1] &quot;character&quot;
+</code></pre>
+
+<pre><code class="r">class(TRUE)
+</code></pre>
+
+<pre><code>#&gt; [1] &quot;logical&quot;
+</code></pre>
+
+<pre><code class="r">class(FALSE)
+</code></pre>
+
+<pre><code>#&gt; [1] &quot;logical&quot;
+</code></pre>
+
+<pre><code class="r">class(factor(1))
+</code></pre>
+
+<pre><code>#&gt; [1] &quot;factor&quot;
+</code></pre>
+
+<p>Las funciones tambien son &#39;objetos&#39; accesibles en la sesion</p>
+
+<pre><code class="r">class(ls)
+</code></pre>
+
+<pre><code>#&gt; [1] &quot;function&quot;
+</code></pre>
+
+<pre><code class="r">ls()  # llamada a la funcion: con parentesis, aunque no tenga argumentos
+</code></pre>
+
+<pre><code>#&gt; [1] &quot;base&quot;         &quot;bases&quot;        &quot;colesterol&quot;   &quot;tratamientos&quot;
+#&gt; [5] &quot;variableA&quot;
+</code></pre>
+
+<pre><code class="r">ls  # llamada a la funcion sin parentesis: muestra el objeto, es decir, el codigo de la función.
+</code></pre>
+
+<pre><code>#&gt; function (name, pos = -1L, envir = as.environment(pos), all.names = FALSE, 
+#&gt;     pattern) 
+#&gt; {
+#&gt;     if (!missing(name)) {
+#&gt;         nameValue &lt;- try(name, silent = TRUE)
+#&gt;         if (identical(class(nameValue), &quot;try-error&quot;)) {
+#&gt;             name &lt;- substitute(name)
+#&gt;             if (!is.character(name)) 
+#&gt;                 name &lt;- deparse(name)
+#&gt;             warning(gettextf(&quot;%s converted to character string&quot;, 
+#&gt;                 sQuote(name)), domain = NA)
+#&gt;             pos &lt;- name
+#&gt;         }
+#&gt;         else pos &lt;- nameValue
+#&gt;     }
+#&gt;     all.names &lt;- .Internal(ls(envir, all.names))
+#&gt;     if (!missing(pattern)) {
+#&gt;         if ((ll &lt;- length(grep(&quot;[&quot;, pattern, fixed = TRUE))) &amp;&amp; 
+#&gt;             ll != length(grep(&quot;]&quot;, pattern, fixed = TRUE))) {
+#&gt;             if (pattern == &quot;[&quot;) {
+#&gt;                 pattern &lt;- &quot;\\[&quot;
+#&gt;                 warning(&quot;replaced regular expression pattern &#39;[&#39; by  &#39;\\\\[&#39;&quot;)
+#&gt;             }
+#&gt;             else if (length(grep(&quot;[^\\\\]\\[&lt;-&quot;, pattern))) {
+#&gt;                 pattern &lt;- sub(&quot;\\[&lt;-&quot;, &quot;\\\\\\[&lt;-&quot;, pattern)
+#&gt;                 warning(&quot;replaced &#39;[&lt;-&#39; by &#39;\\\\[&lt;-&#39; in regular expression pattern&quot;)
+#&gt;             }
+#&gt;         }
+#&gt;         grep(pattern, all.names, value = TRUE)
+#&gt;     }
+#&gt;     else all.names
+#&gt; }
+#&gt; &lt;bytecode: 0x1fdcfe8&gt;
+#&gt; &lt;environment: namespace:base&gt;
+</code></pre>
+
+<h2>VECTORES</h2>
+
+<p>Varios elementos se pueden concatenar en un vector utilizando el operador o funcion: <code>c ()</code></p>
+
+<pre><code class="r">c(1, 2, 3)
+</code></pre>
+
+<pre><code>#&gt; [1] 1 2 3
+</code></pre>
+
+<pre><code class="r">c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;)
+</code></pre>
+
+<pre><code>#&gt; [1] &quot;a&quot; &quot;b&quot; &quot;c&quot;
+</code></pre>
+
+<pre><code class="r">c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, 1, 2, 3)  #OBS: todos los elementos del vector son del mismo tipo
+</code></pre>
+
+<pre><code>#&gt; [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;1&quot; &quot;2&quot; &quot;3&quot;
+</code></pre>
+
+<p>Todos los elementos del vector tienen la misma clase</p>
+
+<pre><code class="r">class(c(1, 2, 3))
+</code></pre>
+
+<pre><code>#&gt; [1] &quot;numeric&quot;
+</code></pre>
+
+<pre><code class="r">class(c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;))
+</code></pre>
+
+<pre><code>#&gt; [1] &quot;character&quot;
+</code></pre>
+
+<pre><code class="r">class(c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, 1, 2, 3))  #Si no R cambia el tipo de alguno de ellos.
+</code></pre>
+
+<pre><code>#&gt; [1] &quot;character&quot;
+</code></pre>
+
+<p>La longitud es una caracteristica de los vectores que se podemos
+conocer utilizando la funcion length</p>
+
+<pre><code class="r">length(c(1, 2, 3))
+</code></pre>
+
+<pre><code>#&gt; [1] 3
+</code></pre>
+
+<pre><code class="r">length(c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;))
+</code></pre>
+
+<pre><code>#&gt; [1] 3
+</code></pre>
+
+<pre><code class="r">length(c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, 1, 2, 3))
+</code></pre>
+
+<pre><code>#&gt; [1] 6
+</code></pre>
+
+<p>Todas las variables en R son vectores de longitud 1</p>
+
+<pre><code class="r">is.vector(1)
+</code></pre>
+
+<pre><code>#&gt; [1] TRUE
+</code></pre>
+
+<pre><code class="r">class(1)
+</code></pre>
+
+<pre><code>#&gt; [1] &quot;numeric&quot;
+</code></pre>
+
+<pre><code class="r">length(1)
+</code></pre>
+
+<pre><code>#&gt; [1] 1
+</code></pre>
+
+<pre><code class="r">
+is.vector(&quot;adjgfagkjg&quot;)
+</code></pre>
+
+<pre><code>#&gt; [1] TRUE
+</code></pre>
+
+<pre><code class="r">class(&quot;adjgfagkjg&quot;)
+</code></pre>
+
+<pre><code>#&gt; [1] &quot;character&quot;
+</code></pre>
+
+<pre><code class="r">length(&quot;adjgfagkjg&quot;)
+</code></pre>
+
+<pre><code>#&gt; [1] 1
+</code></pre>
+
+<pre><code class="r">
+is.vector(TRUE)
+</code></pre>
+
+<pre><code>#&gt; [1] TRUE
+</code></pre>
+
+<pre><code class="r">class(TRUE)
+</code></pre>
+
+<pre><code>#&gt; [1] &quot;logical&quot;
+</code></pre>
+
+<pre><code class="r">length(TRUE)
+</code></pre>
+
+<pre><code>#&gt; [1] 1
+</code></pre>
+
+<p>Son lo mismo:</p>
+
+<pre><code class="r">1
+</code></pre>
+
+<pre><code>#&gt; [1] 1
+</code></pre>
+
+<pre><code class="r">c(1)
+</code></pre>
+
+<pre><code>#&gt; [1] 1
+</code></pre>
+
+<pre><code class="r">
+1 == c(1)
+</code></pre>
+
+<pre><code>#&gt; [1] TRUE
+</code></pre>
+
+<pre><code class="r">identical(1, c(1))
+</code></pre>
+
+<pre><code>#&gt; [1] TRUE
+</code></pre>
+
+<p>Asignacion de valores a variables</p>
+
+<pre><code class="r">a &lt;- 4
+a
+</code></pre>
+
+<pre><code>#&gt; [1] 4
+</code></pre>
+
+<pre><code class="r">b &lt;- c(1, 2, 3)
+b
+</code></pre>
+
+<pre><code>#&gt; [1] 1 2 3
+</code></pre>
+
+<pre><code class="r">c &lt;- c(5, 4, 3, 2, 1)
+c
+</code></pre>
+
+<pre><code>#&gt; [1] 5 4 3 2 1
+</code></pre>
+
+<pre><code class="r">d &lt;- c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;)
+d
+</code></pre>
+
+<pre><code>#&gt; [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot;
+</code></pre>
+
+<pre><code class="r">
+length(a)
+</code></pre>
+
+<pre><code>#&gt; [1] 1
+</code></pre>
+
+<pre><code class="r">length(b)
+</code></pre>
+
+<pre><code>#&gt; [1] 3
+</code></pre>
+
+<pre><code class="r">length(c)
+</code></pre>
+
+<pre><code>#&gt; [1] 5
+</code></pre>
+
+<pre><code class="r">length(d)
+</code></pre>
+
+<pre><code>#&gt; [1] 6
+</code></pre>
+
+<p>Se puede reasignar valores</p>
+
+<pre><code class="r">a
+</code></pre>
+
+<pre><code>#&gt; [1] 4
+</code></pre>
+
+<pre><code class="r">a &lt;- 7
+a
+</code></pre>
+
+<pre><code>#&gt; [1] 7
+</code></pre>
+
+<pre><code class="r">a &lt;- c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, )
+</code></pre>
+
+<pre><code>#&gt; Error: argument 4 is empty
+</code></pre>
+
+<pre><code class="r">a
+</code></pre>
+
+<pre><code>#&gt; [1] 7
+</code></pre>
+
+<p>Los vectores pueden ser de varias CLASES</p>
+
+<pre><code class="r">class(1:10)  #&#39;integer&#39;
+</code></pre>
+
+<pre><code>#&gt; [1] &quot;integer&quot;
+</code></pre>
+
+<pre><code class="r">class(c(1, 2, 3))  #&#39;numeric&#39;
+</code></pre>
+
+<pre><code>#&gt; [1] &quot;numeric&quot;
+</code></pre>
+
+<pre><code class="r">class(c(&quot;A&quot;, &quot;B&quot;, &quot;C&quot;))  #&#39;character&#39;
+</code></pre>
+
+<pre><code>#&gt; [1] &quot;character&quot;
+</code></pre>
+
+<pre><code class="r">class(c(TRUE, FALSE))  #&#39;logical&#39;
+</code></pre>
+
+<pre><code>#&gt; [1] &quot;logical&quot;
+</code></pre>
+
+<p>Se puede acceder a los elementos del vector por su poscion</p>
+
+<pre><code class="r">d
+</code></pre>
+
+<pre><code>#&gt; [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot;
+</code></pre>
+
+<pre><code class="r">d[1]
+</code></pre>
+
+<pre><code>#&gt; [1] &quot;a&quot;
+</code></pre>
+
+<pre><code class="r">d[3]
+</code></pre>
+
+<pre><code>#&gt; [1] &quot;c&quot;
+</code></pre>
+
+<p>Varias posiciones del vector se indican, a su vez, como un vector numerico</p>
+
+<pre><code class="r">d[c(1, 2, 3)]
+</code></pre>
+
+<pre><code>#&gt; [1] &quot;a&quot; &quot;b&quot; &quot;c&quot;
+</code></pre>
+
+<pre><code class="r">d[c(3, 2, 1)]  #sigue siendo un vector en otro orden
+</code></pre>
+
+<pre><code>#&gt; [1] &quot;c&quot; &quot;b&quot; &quot;a&quot;
+</code></pre>
+
+<p>quizas sea mas claro asi presentado</p>
+
+<pre><code class="r">v &lt;- c(3, 2, 1)
+class(v)  ##es un vector
+</code></pre>
+
+<pre><code>#&gt; [1] &quot;numeric&quot;
+</code></pre>
+
+<pre><code class="r">d[v]  ##que &#39;indexa&#39; a otro vector
+</code></pre>
+
+<pre><code>#&gt; [1] &quot;c&quot; &quot;b&quot; &quot;a&quot;
+</code></pre>
+
+<pre><code class="r">
+class(d[c(1, 2, 3)])  #es un vector nuevo
+</code></pre>
+
+<pre><code>#&gt; [1] &quot;character&quot;
+</code></pre>
+
+<pre><code class="r">length(d[c(1, 2, 3)])  #con longitud diferente
+</code></pre>
+
+<pre><code>#&gt; [1] 3
+</code></pre>
+
+<p>Se puede acceder a todo el vector menos algunas posiciones </p>
+
+<pre><code class="r">d
+</code></pre>
+
+<pre><code>#&gt; [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot;
+</code></pre>
+
+<pre><code class="r">d[-1]
+</code></pre>
+
+<pre><code>#&gt; [1] &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot;
+</code></pre>
+
+<pre><code class="r">
+d[c(-1, -3, -5)]
+</code></pre>
+
+<pre><code>#&gt; [1] &quot;b&quot; &quot;d&quot; &quot;f&quot;
+</code></pre>
+
+<pre><code class="r">d[-c(1, 3, 5)]  # el operador - se aplica a todos los elementos del vector
+</code></pre>
+
+<pre><code>#&gt; [1] &quot;b&quot; &quot;d&quot; &quot;f&quot;
+</code></pre>
+
+<pre><code class="r">d[c(1, 3, -5)]  # no se pueden mezclar las dos formas de acceso
+</code></pre>
+
+<pre><code>#&gt; Error: only 0&#39;s may be mixed with negative subscripts
+</code></pre>
+
+<p>El operador &#39;:&#39; indica una secuencia de enteros</p>
+
+<pre><code class="r">10:15
+</code></pre>
+
+<pre><code>#&gt; [1] 10 11 12 13 14 15
+</code></pre>
+
+<pre><code class="r">c(10, 11, 12, 13, 14, 15)
+</code></pre>
+
+<pre><code>#&gt; [1] 10 11 12 13 14 15
+</code></pre>
+
+<pre><code class="r">
+identical(10:15, c(10, 11, 12, 13, 14, 15))
+</code></pre>
+
+<pre><code>#&gt; [1] FALSE
+</code></pre>
+
+<pre><code class="r">
+class(10:15)
+</code></pre>
+
+<pre><code>#&gt; [1] &quot;integer&quot;
+</code></pre>
+
+<pre><code class="r">class(c(10, 11, 12, 13, 14, 15))
+</code></pre>
+
+<pre><code>#&gt; [1] &quot;numeric&quot;
+</code></pre>
+
+<p>Al ser un vector, se puede usar para indexar las posiciones de otros</p>
+
+<pre><code class="r">d[3:1]
+</code></pre>
+
+<pre><code>#&gt; [1] &quot;c&quot; &quot;b&quot; &quot;a&quot;
+</code></pre>
+
+<p>OBS: los vectores tambien se pueden nombrar</p>
+
+<pre><code class="r">v &lt;- 101:103
+v
+</code></pre>
+
+<pre><code>#&gt; [1] 101 102 103
+</code></pre>
+
+<pre><code class="r">names(v)
+</code></pre>
+
+<pre><code>#&gt; NULL
+</code></pre>
+
+<pre><code class="r">names(v) &lt;- c(&quot;n1&quot;, &quot;n2&quot;, &quot;n3&quot;)
+v
+</code></pre>
+
+<pre><code>#&gt;  n1  n2  n3 
+#&gt; 101 102 103
+</code></pre>
+
+<pre><code class="r">names(v)
+</code></pre>
+
+<pre><code>#&gt; [1] &quot;n1&quot; &quot;n2&quot; &quot;n3&quot;
+</code></pre>
+
+<p>de hecho se pueden nombrar al definirlos</p>
+
+<pre><code class="r">c(N1 = &quot;primer valor&quot;, N2 = &quot;segundo valor&quot;)
+</code></pre>
+
+<pre><code>#&gt;              N1              N2 
+#&gt;  &quot;primer valor&quot; &quot;segundo valor&quot;
+</code></pre>
+
+<p>Podemos acceder a las posiciones de los vectores por sus nombres si las tienen</p>
+
+<pre><code class="r">v[2]
+</code></pre>
+
+<pre><code>#&gt;  n2 
+#&gt; 102
+</code></pre>
+
+<pre><code class="r">v[&quot;n2&quot;]
+</code></pre>
+
+<pre><code>#&gt;  n2 
+#&gt; 102
+</code></pre>
+
+<pre><code class="r">
+v[3:2]
+</code></pre>
+
+<pre><code>#&gt;  n3  n2 
+#&gt; 103 102
+</code></pre>
+
+<pre><code class="r">v[c(&quot;n3&quot;, &quot;n2&quot;)]
+</code></pre>
+
+<pre><code>#&gt;  n3  n2 
+#&gt; 103 102
+</code></pre>
+
+<p>Tambien se puede acceder a los elementos de un vector indexando con vectores &#39;logicos&#39;</p>
+
+<pre><code class="r">v
+</code></pre>
+
+<pre><code>#&gt;  n1  n2  n3 
+#&gt; 101 102 103
+</code></pre>
+
+<pre><code class="r">
+logico &lt;- c(TRUE, FALSE, TRUE)
+is.vector(logico)
+</code></pre>
+
+<pre><code>#&gt; [1] TRUE
+</code></pre>
+
+<pre><code class="r">class(logico)
+</code></pre>
+
+<pre><code>#&gt; [1] &quot;logical&quot;
+</code></pre>
+
+<pre><code class="r">
+v[logico]
+</code></pre>
+
+<pre><code>#&gt;  n1  n3 
+#&gt; 101 103
+</code></pre>
+
+<h2>Operaciones entre vectores</h2>
+
+<p>Las operaciones entre vectores se realizan entre los elementos de vectores segun la posicion</p>
+
+<pre><code class="r">c(1, 1, 2, 3) + c(4, 5, 6, 9)
+</code></pre>
+
+<pre><code>#&gt; [1]  5  6  8 12
+</code></pre>
+
+<pre><code class="r">
+A &lt;- c(1, 1, 2, 3)
+B &lt;- c(4, 5, 6, 9)
+
+A + B
+</code></pre>
+
+<pre><code>#&gt; [1]  5  6  8 12
+</code></pre>
+
+<pre><code class="r">A * B
+</code></pre>
+
+<pre><code>#&gt; [1]  4  5 12 27
+</code></pre>
+
+<pre><code class="r">B/A
+</code></pre>
+
+<pre><code>#&gt; [1] 4 5 3 3
+</code></pre>
+
+<p>potencias</p>
+
+<pre><code class="r">A^2
+</code></pre>
+
+<pre><code>#&gt; [1] 1 1 4 9
+</code></pre>
+
+<pre><code class="r">A^3
+</code></pre>
+
+<pre><code>#&gt; [1]  1  1  8 27
+</code></pre>
+
+<p>potencias (forma alternativa)</p>
+
+<pre><code class="r">A^2
+</code></pre>
+
+<pre><code>#&gt; [1] 1 1 4 9
+</code></pre>
+
+<pre><code class="r">
+
+3 * A  ##&#39; es tambien una operacion entre elementos de vectores
+</code></pre>
+
+<pre><code>#&gt; [1] 3 3 6 9
+</code></pre>
+
+<p>el vector c(3) se extiende automaticamente</p>
+
+<pre><code class="r">1/A
+</code></pre>
+
+<pre><code>#&gt; [1] 1.0000 1.0000 0.5000 0.3333
+</code></pre>
+
+<pre><code class="r">1/B
+</code></pre>
+
+<pre><code>#&gt; [1] 0.2500 0.2000 0.1667 0.1111
+</code></pre>
+
+<p>Generalmente, vectores de diferente longitud se <em>reciclan</em> en las operaciones</p>
+
+<pre><code class="r">A
+</code></pre>
+
+<pre><code>#&gt; [1] 1 1 2 3
+</code></pre>
+
+<pre><code class="r">c(2, 3) * A
+</code></pre>
+
+<pre><code>#&gt; [1] 2 3 4 9
+</code></pre>
+
+<pre><code class="r">
+c(3, 3) * c(1, 2, 3, 4)
+</code></pre>
+
+<pre><code>#&gt; [1]  3  6  9 12
+</code></pre>
+
+<pre><code class="r">
+c(1, 2) * c(1, 2, 3, 4)  #es lo mismo que:
+</code></pre>
+
+<pre><code>#&gt; [1] 1 4 3 8
+</code></pre>
+
+<pre><code class="r">c(1, 2, 1, 2) * c(1, 2, 3, 4)
+</code></pre>
+
+<pre><code>#&gt; [1] 1 4 3 8
+</code></pre>
+
+<p>La longitud de uno de los vectores ha de ser multiplo de la longitud del otro vector.
+Este tipo de repeticiones suele funcionar con todas las operaciones entre vectores.</p>
+
+<pre><code class="r">c(1, 2, 1) * c(1, 2, 3, 4)
+</code></pre>
+
+<pre><code>#&gt; Warning: longer object length is not a multiple of shorter object length
+</code></pre>
+
+<pre><code>#&gt; [1] 1 4 3 4
+</code></pre>
+
+<p>Missing values: NA (<em>not available</em>)</p>
+
+<pre><code class="r">m &lt;- c(1:2, NA, 4:6)
+m
+</code></pre>
+
+<pre><code>#&gt; [1]  1  2 NA  4  5  6
+</code></pre>
+
+<pre><code class="r">class(m)
+</code></pre>
+
+<pre><code>#&gt; [1] &quot;integer&quot;
+</code></pre>
+
+<pre><code class="r">class(m[3])
+</code></pre>
+
+<pre><code>#&gt; [1] &quot;integer&quot;
+</code></pre>
+
+<pre><code class="r">m[3]
+</code></pre>
+
+<pre><code>#&gt; [1] NA
+</code></pre>
+
+<pre><code class="r">
+n &lt;- c(&quot;a&quot;, NA, &quot;b&quot;)
+n
+</code></pre>
+
+<pre><code>#&gt; [1] &quot;a&quot; NA  &quot;b&quot;
+</code></pre>
+
+<pre><code class="r">class(n)
+</code></pre>
+
+<pre><code>#&gt; [1] &quot;character&quot;
+</code></pre>
+
+<pre><code class="r">class(n[2])
+</code></pre>
+
+<pre><code>#&gt; [1] &quot;character&quot;
+</code></pre>
+
+<pre><code class="r">n[2]
+</code></pre>
+
+<pre><code>#&gt; [1] NA
+</code></pre>
+
+<pre><code class="r">
+is.na(m)
+</code></pre>
+
+<pre><code>#&gt; [1] FALSE FALSE  TRUE FALSE FALSE FALSE
+</code></pre>
+
+<pre><code class="r">is.na(n)
+</code></pre>
+
+<pre><code>#&gt; [1] FALSE  TRUE FALSE
+</code></pre>
+
+<pre><code class="r">
+m
+</code></pre>
+
+<pre><code>#&gt; [1]  1  2 NA  4  5  6
+</code></pre>
+
+<pre><code class="r">m + 1  #los NA se propagan en las operaciones
+</code></pre>
+
+<pre><code>#&gt; [1]  2  3 NA  5  6  7
+</code></pre>
+
+<p>No todas las <em>operaciones</em> entre vectores son <em>numericas</em>.
+Por ejemplo la funcion para concatenar textos:</p>
+
+<pre><code class="r">paste(&quot;texto primero&quot;, &quot;texto segundo&quot;, sep = &quot; &quot;)
+</code></pre>
+
+<pre><code>#&gt; [1] &quot;texto primero texto segundo&quot;
+</code></pre>
+
+<pre><code class="r">
+paste(&quot;texto primero&quot;, &quot;texto segundo&quot;, sep = &quot;_&quot;)
+</code></pre>
+
+<pre><code>#&gt; [1] &quot;texto primero_texto segundo&quot;
+</code></pre>
+
+<pre><code class="r">paste(&quot;texto primero&quot;, &quot;texto segundo&quot;, sep = &quot; Y &quot;)
+</code></pre>
+
+<pre><code>#&gt; [1] &quot;texto primero Y texto segundo&quot;
+</code></pre>
+
+<pre><code class="r">
+paste(c(&quot;texto1&quot;, &quot;texto2&quot;), c(&quot;TEXTO1&quot;, &quot;TEXTO2&quot;, &quot;TEXTO3&quot;, &quot;TEXTO4&quot;), sep = &quot; &quot;)
+</code></pre>
+
+<pre><code>#&gt; [1] &quot;texto1 TEXTO1&quot; &quot;texto2 TEXTO2&quot; &quot;texto1 TEXTO3&quot; &quot;texto2 TEXTO4&quot;
+</code></pre>
+
+<p>Tambien hay operaciones <em>logicas</em> definidas para los vectores logicos</p>
+
+<pre><code class="r">vectorlogico &lt;- is.na(m)
+vectorlogico
+</code></pre>
+
+<pre><code>#&gt; [1] FALSE FALSE  TRUE FALSE FALSE FALSE
+</code></pre>
+
+<pre><code class="r">class(vectorlogico)
+</code></pre>
+
+<pre><code>#&gt; [1] &quot;logical&quot;
+</code></pre>
+
+<pre><code class="r">length(vectorlogico)
+</code></pre>
+
+<pre><code>#&gt; [1] 6
+</code></pre>
+
+<pre><code class="r">vectorlogico[1:3]
+</code></pre>
+
+<pre><code>#&gt; [1] FALSE FALSE  TRUE
+</code></pre>
+
+<p>Operadres logicos: NEGACION</p>
+
+<pre><code class="r">!TRUE
+</code></pre>
+
+<pre><code>#&gt; [1] FALSE
+</code></pre>
+
+<pre><code class="r">!FALSE
+</code></pre>
+
+<pre><code>#&gt; [1] TRUE
+</code></pre>
+
+<pre><code class="r">!vectorlogico  ##afectan a todos los elementos del vector
+</code></pre>
+
+<pre><code>#&gt; [1]  TRUE  TRUE FALSE  TRUE  TRUE  TRUE
+</code></pre>
+
+<p>Operadres logicos: Y</p>
+
+<pre><code class="r">TRUE &amp; TRUE
+</code></pre>
+
+<pre><code>#&gt; [1] TRUE
+</code></pre>
+
+<pre><code class="r">TRUE &amp; FALSE
+</code></pre>
+
+<pre><code>#&gt; [1] FALSE
+</code></pre>
+
+<pre><code class="r">FALSE &amp; FALSE
+</code></pre>
+
+<pre><code>#&gt; [1] FALSE
+</code></pre>
+
+<pre><code class="r">c(TRUE, TRUE) &amp; c(TRUE, FALSE)
+</code></pre>
+
+<pre><code>#&gt; [1]  TRUE FALSE
+</code></pre>
+
+<p>Operadres logicos: O</p>
+
+<pre><code class="r">TRUE | TRUE
+</code></pre>
+
+<pre><code>#&gt; [1] TRUE
+</code></pre>
+
+<pre><code class="r">TRUE | FALSE
+</code></pre>
+
+<pre><code>#&gt; [1] TRUE
+</code></pre>
+
+<pre><code class="r">FALSE | FALSE
+</code></pre>
+
+<pre><code>#&gt; [1] FALSE
+</code></pre>
+
+<pre><code class="r">c(TRUE, TRUE) | c(TRUE, FALSE)
+</code></pre>
+
+<pre><code>#&gt; [1] TRUE TRUE
+</code></pre>
+
+<h2>LOOPS con vectores</h2>
+
+<pre><code class="r">v
+</code></pre>
+
+<pre><code>#&gt;  n1  n2  n3 
+#&gt; 101 102 103
+</code></pre>
+
+<p>Iteramos sobre las posiciones:</p>
+
+<pre><code class="r">posiciones &lt;- 1:3
+posiciones
+</code></pre>
+
+<pre><code>#&gt; [1] 1 2 3
+</code></pre>
+
+<pre><code class="r">for (i in posiciones) {
+    cat(&quot;\n&quot;)  #linea nueva
+    ## 
+    print(i)
+    dato &lt;- v[i]
+    print(dato)
+}
+</code></pre>
+
+<pre><code>#&gt; 
+#&gt; [1] 1
+#&gt;  n1 
+#&gt; 101 
+#&gt; 
+#&gt; [1] 2
+#&gt;  n2 
+#&gt; 102 
+#&gt; 
+#&gt; [1] 3
+#&gt;  n3 
+#&gt; 103
+</code></pre>
+
+<p>Iteramos sobre los nombres del vector:</p>
+
+<pre><code class="r">nombres &lt;- names(v)
+nombres
+</code></pre>
+
+<pre><code>#&gt; [1] &quot;n1&quot; &quot;n2&quot; &quot;n3&quot;
+</code></pre>
+
+<pre><code class="r">for (i in nombres) {
+    cat(&quot;\n&quot;)  #linea nueva
+    print(i)
+    dato &lt;- v[i]
+    print(dato)
+}
+</code></pre>
+
+<pre><code>#&gt; 
+#&gt; [1] &quot;n1&quot;
+#&gt;  n1 
+#&gt; 101 
+#&gt; 
+#&gt; [1] &quot;n2&quot;
+#&gt;  n2 
+#&gt; 102 
+#&gt; 
+#&gt; [1] &quot;n3&quot;
+#&gt;  n3 
+#&gt; 103
+</code></pre>
+
+<p>Iteramos <strong>sobre los propios elementos</strong> del vector.
+Es una forma particular de R (no esta en algunos otros lenguajes)</p>
+
+<pre><code class="r">for (i in v) {
+    cat(&quot;\n&quot;)  #linea nueva
+    print(i)
+    dato &lt;- i
+    print(dato)
+}
+</code></pre>
+
+<pre><code>#&gt; 
+#&gt; [1] 101
+#&gt; [1] 101
+#&gt; 
+#&gt; [1] 102
+#&gt; [1] 102
+#&gt; 
+#&gt; [1] 103
+#&gt; [1] 103
+</code></pre>
+
+<p>Funciones que leen y escriben vectores:</p>
+
+<ul>
+<li>readLines</li>
+<li>writeLines</li>
+</ul>
+
+<hr/>
+
+</body>
+
+</html>
