@@ -22,6 +22,10 @@
 
 #esto es una linea comentada
 
+##' Comandos en R
+# boxplot(x) diagramas de caja
+# hist(x) histograma
+
 ##' Queremos representar gráficamente los valores de la variable colesterol. Utilizaremos los **diagramas de cajas** o **boxplots**:
 colesterol <- c(150,125,138,144,150,201,225,233,200,190, 250,150,180,240,235)  #incluimos los datos de nuestra variable
 boxplot(colesterol)
@@ -65,26 +69,27 @@ abline(v = 175, col = "green", lwd = 2)
 
 
 
-##' ## 2. Representación gráfica de una variable categórica 
+##' ## 2. Representación gráfica de una variable categórica o cualitativa
+##'
+##' Comandos en R
+# table(x) para obtener la tabla de frecuencias
+# pie(table(x)) genera un gráfico de sectores
+# barplot(table(x)) genera un diagrama de barras
+##'
+##' Los diagramas de barras son preferibles a los diagramas de sectores.
+##'  
 ##' ### 2.1. Gráficos circulares o de sectores:
- 
-##' La variable **variante** incluye las frecuencias de diferentes tipos de mutaciones:
-variante  <- c(10,12,4,16)
-nombres   <- c("SNP", "stop lost", "intron variant", "exon variant")
-
-##' Calculamos los porcentajes
-pct <- round(variante/sum(variante)*100)
-
-##' Realizamos el gráfico:
-pie(variante)
-# añadimos nombres de las categorias
-pie(variante, labels = nombres) 
-# añadimos nombres de las categorias + porcentajes
-pie(variante, labels = paste(nombres, pct, "%"))  
+##' La variable **mut** indica el número de mutaciones encontradas en varios genes de interés (varía entre 1 y 5)
+# introducimos los datos
+mut <- c(1,3,5,2,4,4,4,1,1,1,1,3,5,2) 
+# preparamos una tabla de frecuencias
+table(mut)
+# generamos el diagrama de sectores
+pie(table(mut)) 
 # seleccionamos colores que nos gusten más para cada sector del gráfico:
-pie(variante, labels = paste(nombres, pct, "%"), col = c("red", "blue", "pink", "green"))  
+pie(table(mut), col = c("red", "blue", "pink", "green", "grey"))  
 # además incluimos un título 
-pie(variante, labels = paste(nombres, pct, "%"), col = c("red", "blue", "pink", "green"),
+pie(table(mut),  col = c("red", "blue", "pink", "green", "grey"),
     main = "Tipos de variantes genómicas") 
 
  
@@ -96,15 +101,14 @@ pie(variante, labels = paste(nombres, pct, "%"), col = c("red", "blue", "pink", 
 # introducimos los datos
 mut <- c(1,3,5,2,4,4,4,1,1,1,1,3,5,2) 
 # preparamos una tabla de frecuencias
-datos <- table(mut)
-datos
+table(mut)
 # generamos el diagrama de barras
-barplot(datos) 
+barplot(table(mut)) 
 # incluimos título del gráfico  y títulos para los ejes X,Y.
-barplot(datos, xlab = "número de mutaciones", ylab = "frecuencias",
+barplot(table(mut), xlab = "número de mutaciones", ylab = "frecuencias",
         main = "Mutaciones detectadas en genes OPITZ")
 # cambiamos el modo de visualización y añadimos color a las barras
-barplot(datos, horiz = TRUE, 
+barplot(table(mut), horiz = TRUE, 
         ylab = "número de mutaciones", xlab = "frecuencias", 
         main = "Mutaciones detectadas en genes OPITZ", 
         col = "green")  
@@ -135,6 +139,15 @@ plot(colina, glutamato, main = "colina vs. glutamato")
 #puntos más pequeños y con color!
 plot(colina, glutamato, main = "colina vs. glutamato", cex=0.5, col = "blue") 
 
+##' Estos metabolitos corresponden a dos grupos de ratas y queremos saber si el comportamiento entre colina y glutamato
+##' es diferente en cada grupo. ¿Es posible visualizar esta información gráficamente?
+
+grupos <-  c(1,1,1,1,1,2,2,2,2,2)
+plot(colina, glutamato, main = "colina vs. glutamato", col = c("red", "blue"), pch = grupos, cex = 2) 
+legend(130,100, legend=c("1","2"), pch= c(1:2), col = c("red", "blue") )
+
+
+
 ##' ¿Podemos ver las relaciones de los tres metabolitos por parejas?
 pairs(~glutamato + colina + HLDL)
 #incluyendo nuevos elementos en el gráfico
@@ -154,8 +167,17 @@ datos
 ##'<br />
 ##' ## 5. ¿Cómo guardamos los gráficos generados en R?
 ##' 
+##' 5.1. Es posible generar varios gráficos y que aparezcan en la misma ventana, antes de guardarlos. Lo vemos con un ejemplo:
+# a. Definimos  el número de filas y columnas que tendrá esa ventana, por ejemplo: 2 filas y 1 columna:
+par(mfrow=c(2,1))
+# b. Generamos los dos gráficos que queremos incluir en la misma imagen:
+boxplot(colesterol)
+hist(colesterol)
+# c. Para finalizar, dejamos la región del dibujo como estaba inicialmente: 1 fila y 1 columna
+par(mfrow=c(1,1))
 
-##' Los gráficos que hemos creado en la sesión de R se pueden crear en diferentes formatos BMP, JPEG, PNG, TIFF, PDF...
+
+##' 5.2. Los gráficos que hemos creado en la sesión de R se pueden crear en diferentes formatos BMP, JPEG, PNG, TIFF, PDF...
 ##' 
 ##' Desde R o Rstudio es posible guardarlos directamente, pero también podemos ajustar las características de la resolución, utilizando 
 ##' los siguientes comandos:
