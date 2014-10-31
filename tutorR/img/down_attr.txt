@@ -1,0 +1,38 @@
+G0:0000001	1	0	Gene Ontology
+GO:0003674	1	0	Molecular Function
+GO:0005575	1	0	Cellular Component
+GO:0008150	1	0	Biological Process
+GO:0042555	0.0051382735	0.625	MCM complex
+GO:0031514	0.0006495047	0.16	motile cilium
+GO:0000793	0.0134803399	0.129	condensed chromosome
+GO:0043025	0.0006495047	0.1	neuronal cell body
+GO:0030425	0.0026119794	0.094	dendrite
+GO:0044456	0.0264066499	0.086	synapse part
+GO:0043005	0.000344166	0.08	neuron projection
+GO:0042995	0.0007675218	0.067	cell projection
+GO:0005856	0.0439784113	0.059	cytoskeleton
+GO:0097367	0.0382	0.119	carbohydrate derivative binding
+GO:0004930	0.0358	0.103	G-protein coupled receptor activity
+GO:0004888	0.0097	0.092	transmembrane signaling receptor activity
+GO:0038023	0.0075	0.088	signaling receptor activity
+GO:0004871	0.0089	0.077	signal transducer activity
+GO:0032553	0.045	0.055	ribonucleotide binding
+GO:0070099	0.0171764763	1	regulation of chemokine-mediated signaling pathway
+GO:0048846	0.0381554307	0.357	axon extension involved in axon guidance
+GO:0030818	0.0433397523	0.333	negative regulation of cAMP biosynthetic process
+GO:0006270	0.0341873909	0.313	DNA replication initiation
+GO:0030261	0.0182166903	0.273	chromosome condensation
+GO:0007200	0.0194521516	0.229	phospholipase C-activating G-protein coupled receptor signaling pathway
+GO:0007188	0.0428141953	0.169	adenylate cyclase-modulating G-protein coupled receptor signaling pathway
+GO:0007411	0.0054469563	0.143	axon guidance
+GO:0007059	0.009704261	0.117	chromosome segregation
+GO:0000087	0.0001427192	0.107	M phase of mitotic cell cycle
+GO:0050804	0.0428462216	0.102	regulation of synaptic transmission
+GO:0030036	0.0251269087	0.084	actin cytoskeleton organization
+GO:0022403	0.0004512795	0.082	cell cycle phase
+GO:0051960	0.024457893	0.079	regulation of nervous system development
+GO:0030182	0.0112333616	0.073	neuron differentiation
+GO:0048870	0.027853645	0.071	cell motility
+GO:0022008	0.0196289383	0.068	neurogenesis
+GO:0007165	0.0001609133	0.058	signal transduction
+GO:0007154	0.000463614	0.055	cell communication

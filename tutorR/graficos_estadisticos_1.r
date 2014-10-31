@@ -1,14 +1,15 @@
-##' # Gráficos estadísticos con R (1)
+##' # Gráficos estadísticos con R 
 ##' [Francisco García García](http://bioinfo.cipf.es/ "webpage of department") _(2014-10-29)_  
 ##'
 ##' 
 ##' 
 ##' ----------------------------------------------------------------------------
 
+##' ### 0. Introducción 
 ##' ### 1. Representación gráfica de una variable cuantitativa 
 ##' ### 2. Representación gráfica de una variable categórica 
 ##' ### 3. Representación gráfica de dos variables cuantitativas
-##' ### 4. ¿Cómo importamos en R datos de un fichero txt o excel?
+##' ### 4. ¿Cómo importamos en R datos desde un fichero txt?
 ##' ### 5. ¿Cómo guardamos los gráficos generados en R?
 ##' ### 6. Ejercicios 
 ##' ----------------------------------------------------------------------------
@@ -18,16 +19,34 @@
 ##'<br />
   
 
-##' ## 1. Representación gráfica de una variable cuantitativa 
-
+##' ## 0. Introducción 
 #esto es una linea comentada
+##' Los comandos de R son funciones que incluyen un conjunto de argumentos separados por comas y todos ellos entre paréntesis:
+##'
+# boxplot(datos, main = "primer gráfico", xlab = "nivel de colesterol")
+##'  
+##'  
+##' Argumentos generales que utilizaremos en los gráficos:
+##'* **main**: _Título principal del gráfico_
+##'
+##'* **xlab**: _Etiqueta para el eje X_
+##'
+##'* **ylab**: _Etiqueta para el eje Y_
+##'
+##'* **col**: _vector de colores_ 
+##'
+ 
 
-##' Comandos en R
-# boxplot(x) diagramas de caja
-# hist(x) histograma
-
+##'<br />
+##' ## 1. Representación gráfica de una variable cuantitativa 
+##' Comandos en R:
+##'* **boxplot(x)**: diagramas de caja
+##'
+##'* **hist(x)**: histograma
+##'
 ##' Queremos representar gráficamente los valores de la variable colesterol. Utilizaremos los **diagramas de cajas** o **boxplots**:
-colesterol <- c(150,125,138,144,150,201,225,233,200,190, 250,150,180,240,235)  #incluimos los datos de nuestra variable
+#incluimos los datos de nuestra variable
+colesterol <- c(150,125,138,144,150,201,225,233,200,190, 250,150,180,240,235)  
 boxplot(colesterol)
 
 
@@ -62,7 +81,7 @@ abline(h = 175)
 #indicamos que sea una línea gruesa y de color verde
 boxplot(colesterol ~ tratamientos, col= c("red", "blue", "pink")) 
 abline(h = 175, col = "green", lwd = 2)   
-# nos gustan más las distribuciones horizontales de estos plots, las cambiamos!:
+# nos gustan más las distribuciones horizontales de estos plots, las cambiamos:
 boxplot(colesterol ~ tratamientos, col= c("red", "blue", "pink"), horizontal = TRUE) 
 abline(v = 175, col = "green", lwd = 2) 
 ##'<br />
@@ -71,10 +90,10 @@ abline(v = 175, col = "green", lwd = 2)
 
 ##' ## 2. Representación gráfica de una variable categórica o cualitativa
 ##'
-##' Comandos en R
-# table(x) para obtener la tabla de frecuencias
-# pie(table(x)) genera un gráfico de sectores
-# barplot(table(x)) genera un diagrama de barras
+##' Comandos en R:
+##'* **table(x)** para obtener la tabla de frecuencias
+##'* **pie(table(x))** genera un gráfico de sectores
+##'* **barplot(table(x))** genera un diagrama de barras
 ##'
 ##' Los diagramas de barras son preferibles a los diagramas de sectores.
 ##'  
@@ -136,7 +155,7 @@ abline(lm(colina ~ HLDL), col = "red", main = "colina vs. HLDL")
 
 ##' ¿Y entre la colina y el glutamato?
 plot(colina, glutamato, main = "colina vs. glutamato")
-#puntos más pequeños y con color!
+#puntos más pequeños y con color
 plot(colina, glutamato, main = "colina vs. glutamato", cex=0.5, col = "blue") 
 
 ##' Estos metabolitos corresponden a dos grupos de ratas y queremos saber si el comportamiento entre colina y glutamato
@@ -156,7 +175,7 @@ pairs(~glutamato + colina + HLDL, col = "blue", main = "Correlación lineal entr
 
 
 ##'<br />
-##' ## 4. ¿Cómo importamos en R datos de un fichero txt o excel?
+##' ## 4.  ¿Cómo importamos en R datos desde un fichero txt?
 ##' 
 # datos de las cuantificaciones de los metabolitos, separados por tabulaciones 
 datos <- read.delim("datos.txt", header = TRUE, sep = "\t")
@@ -167,7 +186,7 @@ datos
 ##'<br />
 ##' ## 5. ¿Cómo guardamos los gráficos generados en R?
 ##' 
-##' 5.1. Es posible generar varios gráficos y que aparezcan en la misma ventana, antes de guardarlos. Lo vemos con un ejemplo:
+##' **5.1.** Es posible generar varios gráficos y que aparezcan en la misma ventana, antes de guardarlos. Lo vemos con un ejemplo:
 # a. Definimos  el número de filas y columnas que tendrá esa ventana, por ejemplo: 2 filas y 1 columna:
 par(mfrow=c(2,1))
 # b. Generamos los dos gráficos que queremos incluir en la misma imagen:
@@ -176,13 +195,13 @@ hist(colesterol)
 # c. Para finalizar, dejamos la región del dibujo como estaba inicialmente: 1 fila y 1 columna
 par(mfrow=c(1,1))
 
-
-##' 5.2. Los gráficos que hemos creado en la sesión de R se pueden crear en diferentes formatos BMP, JPEG, PNG, TIFF, PDF...
+##'
+##' **5.2.** Los gráficos que hemos creado en la sesión de R se pueden crear en diferentes formatos BMP, JPEG, PNG, TIFF, PDF...
 ##' 
 ##' Desde R o Rstudio es posible guardarlos directamente, pero también podemos ajustar las características de la resolución, utilizando 
 ##' los siguientes comandos:
 ##' 
-##' Vemos algunos ejemplos con el gráfico de dispersión de los metabolitos:
+##' Vemos algunos ejemplos con el gráfico de dispersión de los metabolitos
 pairs(~glutamato + colina + HLDL, col = "blue", main = "Correlación lineal entre metabolitos")
 #guardamos el gráfico en formato PNG:
 png(file="cor_metabolitos.png", height = 600, width = 600)  # avisa a R que queremos un fichero PNG 
