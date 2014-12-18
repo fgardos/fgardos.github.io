@@ -534,25 +534,15 @@ los valores de la variable se mantiene y por lo tanto la transformación no afec
  ¿Sería posible saber cuáles son los grupos que generan estas diferencias?</em></p>
 
 <pre><code class="r">library(PMCMR)
-posthoc.kruskal.nemenyi.test(insectos, colores, method = &quot;Chisq&quot;)
 </code></pre>
 
-<pre><code>#&gt; Warning in posthoc.kruskal.nemenyi.test(insectos, colores, method =
-#&gt; &quot;Chisq&quot;): Ties are present. Chi-sq was corrected for ties.
+<pre><code>#&gt; Error in library(PMCMR): there is no package called &#39;PMCMR&#39;
 </code></pre>
 
-<pre><code>#&gt; 
-#&gt;  Pairwise comparisons using Nemenyi-test with Chi-squared    
-#&gt;                        approximation for independent samples 
-#&gt; 
-#&gt; data:  insectos and colores 
-#&gt; 
-#&gt;        amarillo azul   blanco
-#&gt; azul   0.0056   -      -     
-#&gt; blanco 0.0095   0.9989 -     
-#&gt; verde  0.4930   0.2618 0.3379
-#&gt; 
-#&gt; P value adjustment method: none
+<pre><code class="r">posthoc.kruskal.nemenyi.test(insectos, colores, method = &quot;Chisq&quot;)
+</code></pre>
+
+<pre><code>#&gt; Error in eval(expr, envir, enclos): could not find function &quot;posthoc.kruskal.nemenyi.test&quot;
 </code></pre>
 
 <pre><code class="r">#otra opción:
