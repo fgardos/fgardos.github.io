@@ -217,9 +217,7 @@ hr {
 
 <h3>4. Kruskal-Wallis y pruebas post-hoc</h3>
 
-<h3>5. Ejercicios</h3>
-
-<h3>6. Bibliografía y enlaces de interés</h3>
+<h3>5. Bibliografía y enlaces de interés</h3>
 
 <hr/>
 
@@ -560,108 +558,10 @@ posthoc.kruskal.nemenyi.test(insectos, colores, method = &quot;Chisq&quot;)
 #kruskalmc(insectos, colores)
 </code></pre>
 
-<p><br /></p>
-
-<h2>5. Ejercicios</h2>
-
-<h3>5.1. Relaciones sexuales entre universitarios</h3>
-
-<p>El departamento de Psicología de una Universidad de Castilla-La Mancha ha realizado
-un estudio sobre hábitos, preferencias y satisfacción sexual en estudiantes universitarios.
-Hemos utilizado los datos que recogieron en sus encuestas y queremos
-conocer si existen diferencias entre la frecuencia mensual de relaciones sexuales de
-estudiantes universitarios pertenecientes a tres titulaciones universitarias diferentes:</p>
-
-<p><strong>T1</strong>: 11 14  7 15 11 13 11 16 10 15 18 12  9  9 10 10 15 10 14 10 10 12 14 12 15  7 13  6 10 15 20 10 13 10  6 14  8 10  8 11</p>
-
-<p><strong>T2</strong>: 13 10 12  7  5 10 10 16  9  7  7  2  6  9  9  8  8 10  3  6  5  2  9  3  4  5 10  8  5  9 10  8 13 10  0  2  1  1  0  4</p>
-
-<p><strong>T3</strong>: 6  7  3  5  9  6  1  6  0  2  5  6 11  6  7  0  5  7  5  4  7  4  2  8  9  6  1  4  7  7  8  9  7  5  1  6  9  4  7  6</p>
-
-<p><br /></p>
-
-<p><strong>Contesta las siguientes preguntas</strong>:</p>
-
-<p><strong>A</strong>. Introduce los datos en R creando las 2 variables: una que incluya las frecuencias de actividad sexual y otra que será un factor, que 
-nos proporcionará información sobre la titulación universitaria de cada uno de los estudiantes.</p>
-
-<p><strong>B</strong>. Explora los datos de la muestra mediante gráficos y descriptivos. ¿Observamos diferencias en los valores promedios y de variabilidad por grupos?</p>
-
-<p><strong>C</strong>. Realiza un test F (ANOVA) para comparar las medias de las 3 poblaciones. ¿Cuáles serían las hipótesis nula y alternativa?</p>
-
-<p><strong>D</strong>. Describe los resultados obtenidos indicando quién es el valor del estadístico de contraste (F), los grados de libertad del factor, 
-los grados de libertad residuales y el valor de P.</p>
-
-<p><strong>E</strong>. También indica quién sería el valor crítico de F bajo la hipótesis nula, que nos proporcionará la definición de una región de 
-aceptación y rechazo (consideramos un nivel de significación alfa = 0.05). </p>
-
-<p><strong>F</strong>. ¿Qué valor obtenemos para la estimación de la varianza común de los datos?</p>
-
-<p><strong>G</strong>. Tras evaluar la tabla ANOVA, ¿cuál sería tu conclusión en el contexto del problema?</p>
-
-<p><strong>H</strong>. Determina los intervalos de confianza para las medias de frecuencia sexual en cada uno de las titulaciones descritas.</p>
-
-<p><strong>I</strong>. Si se han obtenido diferencias significativas entre los grupos, determina dónde se muestran esas diferencias utilizando el test HSD de Tukey.
-Representa gráficamente las diferencias encontradas e intrepreta los resultados obtenidos.    </p>
-
-<p><strong>J</strong>.  A partir de los residuos obtenidos y mediante procedimientos gráficos, confirma la validez del modelo comprobando el cumplimiento de las 3 condiciones asumidas al hacer
-el ANOVA.  ¿Crees que el modelo ANOVA utilizado es válido para estos datos?    </p>
-
-<p><strong>K</strong>.  Si NO se verificaran estas condiciones, ¿hay alguna prueba no paramétrica para abordar los datos? Pruébalo y 
-comenta los resultados obtenidos.</p>
-
 <p><br />
 <br /></p>
 
-<h3>5.2. ¿Hay diferencias de salario en función del lugar de trabajo?</h3>
-
-<p>Nos gustaría saber si el salario varía  en alguna de las 3 provincias de la Comunidad Valenciana. 
- Para ello, se realizó un estudio con 50 personas por provincia a las que se preguntó su salario  en euros por semana. </p>
-
-<p><strong>Valencia</strong> 299 313 300 321 308 312 300 310 281 308 309 300 303 303 311 308 291 298 276 290 310 308 295 310 286 295 289 293 291 297 297 287 297 302 298 301 313 290 306 313 294 308 295 303 316 299 313 296 290 299</p>
-
-<p><strong>Castellón</strong>:  252 248 232 229 256 233 240 237 248 232 230 246 236 250 238 243 245 241 235 249 238 231 230 239 261 243 242 245 249 258 245 236 244 242 229 246 244 244 255 247 236 252 237 259 248 237 236 252 236 239</p>
-
-<p><strong>Alicante</strong>: 272 268 285 274 278 287 297 275 269 281 270 284 282 281 280 286 265 283 281 272 269 286 268 288 284 282 304 280 283 281 281 286 287 288 278 272 268 287 269 272 270 271 291 265 280 280 275 294 269 277</p>
-
-<p><br /></p>
-
-<p><strong>Contesta las siguientes preguntas</strong>:</p>
-
-<p><strong>A</strong>. Introduce los datos en R creando las 2 variables: una que incluya los salarios y otra que será un factor, que 
-nos proporcionará información sobre la provincia donde trabajando los sujetos.</p>
-
-<p><strong>B</strong>. Explora los datos de la muestra mediante gráficos y descriptivos. 
-¿Observamos diferencias en los valores promedios y de variabilidad por grupos?</p>
-
-<p><strong>C</strong>. Realiza un test F (ANOVA) para comparar las medias de las 3 poblaciones. ¿Cuáles serían las hipótesis nula y alternativa?</p>
-
-<p><strong>D</strong>. Describe los resultados obtenidos indicando quién es el valor del estadístico de contraste (F), los grados de libertad del factor, 
-los grados de libertad residuales y el valor de P.</p>
-
-<p><strong>E</strong>. También indica quién sería el valor crítico de F bajo la hipótesis nula, que nos proporcionará la definición de una región de 
-aceptación y rechazo (consideramos un nivel de significación alfa = 0.05). </p>
-
-<p><strong>F</strong>. ¿Qué valor obtenemos para la estimación de la varianza común de los datos?</p>
-
-<p><strong>G</strong>. Tras evaluar la tabla ANOVA, ¿cuál sería tu conclusión en el contexto del problema?</p>
-
-<p><strong>H</strong>. Determina los intervalos de confianza para las medias de salario  en cada una de las provincias  descritas.</p>
-
-<p><strong>I</strong>. Si se han obtenido diferencias significativas entre los grupos, determina dónde se muestran esas diferencias utilizando el test HSD de Tukey.
-Representa gráficamente las diferencias encontradas e intrepreta los resultados obtenidos.    </p>
-
-<p><strong>J</strong>.  A partir de los residuos obtenidos y mediante procedimientos gráficos, confirma la validez del modelo comprobando el cumplimiento de las 3 condiciones asumidas al hacer
-el ANOVA.  ¿Crees que el modelo ANOVA utilizado es válido para estos datos?    </p>
-
-<p><strong>K</strong>.  Si NO se verificaran estas condiciones, ¿hay alguna prueba no paramétrica para abordar los datos? Pruébalo y 
-comenta los resultados obtenidos.</p>
-
-<p><br />
-<br />
-<br /></p>
-
-<h2>6. Bibliografía y enlaces de interés:</h2>
+<h2>5. Bibliografía y enlaces de interés:</h2>
 
 <ul>
 <li><p><a href="http://www.antonibosch.com/system/downloads/487/original/EC-MOORE2_Contenido.pdf?1358332517">David S. Moore. Estadística aplicada básica. Editorial Antoni Bosch.</a>  Manual de Estadística Básica.</p></li>

@@ -239,6 +239,12 @@ se cuantificaron el número de células en cada uno de los dos grupos descritos 
 
 <p>Leemos los datos:</p>
 
+<pre><code class="r">setwd(&quot;/home/paco/Desktop/\ Dropbox/github/tutorR&quot;)
+</code></pre>
+
+<pre><code>#&gt; Error in setwd(&quot;/home/paco/Desktop/ Dropbox/github/tutorR&quot;): cannot change working directory
+</code></pre>
+
 <pre><code class="r">datos &lt;- read.csv(&quot;ful.csv&quot;,sep = &quot;\t&quot;, header = T)
 </code></pre>
 
@@ -371,6 +377,8 @@ plot(growth ~ time, col = &quot;green&quot;,
 <pre><code class="r">par(mfrow = c(1, 1))
 </code></pre>
 
+<p>DUDAS: Aparecen algunos valores anómalos y QUIZAS AQUI HABRIA QUE ELIMINARLOS. TAMBIEN VER CON DETALLE KO EN T96 </p>
+
 <h3>3.3. Transformación logarítmica de los datos.</h3>
 
 <p>Una transformación logarítmica, permite visualizar mejor los datos cuando existen grandes diferencias de escala. 
@@ -381,7 +389,7 @@ del crecimiento celular en KO:</p>
 attach(mdata)
 </code></pre>
 
-<pre><code>#&gt; The following object is masked from mdata (position 3):
+<pre><code>#&gt; The following objects are masked from mdata (position 3):
 #&gt; 
 #&gt;     experiment, group, growth, time
 </code></pre>
@@ -441,10 +449,10 @@ colnames(mdata) &lt;- c(&quot;experiment&quot;, &quot;group&quot;, &quot;time&qu
 attach(mdata)
 </code></pre>
 
-<pre><code>#&gt; The following object is masked from mdata (position 3):
+<pre><code>#&gt; The following objects are masked from mdata (position 3):
 #&gt; 
 #&gt;     experiment, group, growth, time
-#&gt; The following object is masked from mdata (position 4):
+#&gt; The following objects are masked from mdata (position 4):
 #&gt; 
 #&gt;     experiment, group, growth, time
 </code></pre>
@@ -485,22 +493,34 @@ plot(growth ~ time, col = &quot;green&quot;,
 el test de ANOVA de Friedman. Es una prueba no paramétrica que permite abordar este tipo de estudios cuando no podemos garantizar la 
 normalidad de los datos en los distintos grupos evaluados:</p>
 
-<pre><code class="r">resp &lt;- aggregate(growth,
+<p>DUDAS:
+1.  ¿pOR QUÉ NO UTILIZO LA MEDIANA EN LUGAR DE LA MEDIA?  (results are the same)
+2. I think is better to eliminate outliers before normalization, after normalization the problem doesn&#39;t improve
+3. Calculate a plot where we have two differnt pattern of growths but showing medians and its confidence interval</p>
+
+<pre><code class="r">resp &lt;- aggregate(mdata$growth,
                   by = list(g = group,
                             t = time),
                   FUN = mean)
+
+resp &lt;- aggregate(mdata$growth,
+                  by = list(g = group,
+                            t = time),
+                  FUN = median)
+resp$x[is.na(resp$x)] &lt;- mean(c(1.218182,1.382353,1.608696,1.960000,3.210526,3.318182,3.722222))
+#I have to solve how to exclude NA: na.rm=TRUE MAYBe in BY
 resp
 </code></pre>
 
 <pre><code>#&gt;    g   t         x
 #&gt; 1 KO t24  1.000000
 #&gt; 2 WT t24  1.000000
-#&gt; 3 KO t48  3.774631
-#&gt; 4 WT t48  3.532378
-#&gt; 5 KO t72 11.114546
-#&gt; 6 WT t72  6.578387
-#&gt; 7 KO t96 15.115064
-#&gt; 8 WT t96  8.897831
+#&gt; 3 KO t48  3.210526
+#&gt; 4 WT t48  2.771499
+#&gt; 5 KO t72 10.473684
+#&gt; 6 WT t72  5.649351
+#&gt; 7 KO t96 12.157895
+#&gt; 8 WT t96  9.359951
 </code></pre>
 
 <pre><code class="r">friedman.test(x ~ g | t, data = resp) 
