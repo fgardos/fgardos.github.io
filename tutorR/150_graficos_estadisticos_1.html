@@ -497,20 +497,19 @@ pairs(~glutamato + colina + HLDL, col = &quot;blue&quot;, main = &quot;Correlaci
 
 <pre><code class="r"># datos de las cuantificaciones de los metabolitos, separados por tabulaciones 
 datos &lt;- read.delim(&quot;datos.txt&quot;, header = TRUE, sep = &quot;\t&quot;)
-datos
 </code></pre>
 
-<pre><code>#&gt;    glutamato colina HLDL
-#&gt; 1        143    146  100
-#&gt; 2         90     97  107
-#&gt; 3        100    106  105
-#&gt; 4        119    123   89
-#&gt; 5         98    103   88
-#&gt; 6         87     90  102
-#&gt; 7         84     90  122
-#&gt; 8         99    106  105
-#&gt; 9        101    108   93
-#&gt; 10        99    101  145
+<pre><code>#&gt; Warning in file(file, &quot;rt&quot;): cannot open file &#39;datos.txt&#39;: No such file or
+#&gt; directory
+</code></pre>
+
+<pre><code>#&gt; Error in file(file, &quot;rt&quot;): cannot open the connection
+</code></pre>
+
+<pre><code class="r">datos
+</code></pre>
+
+<pre><code>#&gt; Error in eval(expr, envir, enclos): object &#39;datos&#39; not found
 </code></pre>
 
 <p><br /></p>

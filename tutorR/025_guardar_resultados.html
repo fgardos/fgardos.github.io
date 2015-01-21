@@ -203,21 +203,23 @@ hr {
 <body>
 <h1>Guardar resultados en R</h1>
 
-<p><a href="http://bioinfo.cipf.es/" title="webpage of department">Francisco García García</a> <em>(2014-12-16)</em>  </p>
+<p><a href="http://bioinfo.cipf.es/" title="webpage of department">Francisco García García</a> <em>(2015-01-21)</em>  </p>
 
 <hr/>
 
 <h3>0. Introducción</h3>
 
-<h3>1. Guardando toda la información NO gráfica en un fichero de texto</h3>
+<h3>1. Guardando automáticamente toda la información NO gráfica en un fichero de texto</h3>
 
-<h3>2. Guardando una base de datos (data.frame o matrix) en un fichero de texto</h3>
+<h3>2. Guardando automáticamente toda la información gráfica en una carpeta</h3>
 
-<h3>3. Salvamos los objetos generados en la sesión de R en un fichero .RData</h3>
+<h3>3. Guardando una base de datos (data.frame o matrix) en un fichero de texto</h3>
 
-<h3>4. Guardar todos los resultados tras ejecutar un script de R desde la consola</h3>
+<h3>4. Salvamos los objetos generados en la sesión de R en un fichero .RData</h3>
 
-<h3>5. Enlaces de interés</h3>
+<h3>5. Guardar todos los resultados tras ejecutar un script de R desde la consola</h3>
+
+<h3>6. Enlaces de interés</h3>
 
 <hr/>
 
@@ -234,7 +236,7 @@ hr {
 <p><br />
 <br /></p>
 
-<h2>1. Guardamos información NO gráfica en un fichero de texto.</h2>
+<h2>1. Guardando automáticamente toda la información NO gráfica en un fichero de texto</h2>
 
 <p>En ocasiones sólo queremos salvar los resultados no gráficos. En ese caso utilizaremos las función <strong>sink</strong> y
 especificaremos un fichero de texto donde se guardarán los resultados obtenidos.</p>
@@ -277,7 +279,30 @@ print(a)
 <p><br />
 <br /></p>
 
-<h2>2. Guardando una base de datos (data.frame o matrix)</h2>
+<h2>2. Guardando automáticamente toda la información  gráfica en una carpeta</h2>
+
+<p>Trabajando con Rstudio es posible guardar cada uno de los gráficos que generamos desde la pestaña Plots. </p>
+
+<p>Existen otras opciones para guardar cada uno de los gráficos que generamos en nuestra sesión de R.</p>
+
+<p>Antes de generar el gráfico
+utilizamos png (u otras como tiff, jpeg,&hellip; dependiendo del formato que nos interese). </p>
+
+<p>Tras la función que define el gráfico incluiremos dev.off() para cerrar la ventana gráfica actual</p>
+
+<pre><code class="r">png(file=&quot;grafico1.png&quot;, height = 600, width = 600, pointsize = 30)
+a &lt;- c(1, 2, 3, 5)
+boxplot(a, col = &quot;red&quot;)
+dev.off()
+</code></pre>
+
+<pre><code>#&gt; pdf 
+#&gt;   2
+</code></pre>
+
+<p>información detallada en ?png</p>
+
+<h2>3. Guardando una base de datos (data.frame o matrix)</h2>
 
 <p>Tras generar una base de datos (data.frame o matrix) es posible guardar ese objeto específico 
 con varias funciones como <strong>write.table</strong>, <strong>write.csv</strong> o <strong>write.matrix</strong>:</p>
@@ -303,7 +328,7 @@ datos
 <p><br />
 <br /></p>
 
-<h2>3. Salvamos los objetos generados en la sesión de R en un fichero .RData</h2>
+<h2>4. Salvamos los objetos generados en la sesión de R en un fichero .RData</h2>
 
 <p>Con las funciones <strong>save</strong> y <strong>save.image</strong> es posible guardar todos o algunos específicos objetos generados 
 en la sesión de R. Luego los volveremos a cargar en la sesión con la función <strong>load</strong>. Vemos un ejemplo:</p>
@@ -364,7 +389,7 @@ head(datos2)
 <p><br />
 <br /></p>
 
-<h2>4. Guardar todos los resultadostras ejecutar un script de R desde la consola</h2>
+<h2>5. Guardar todos los resultados tras ejecutar un script de R desde la consola</h2>
 
 <p>Si tenemos acceso a una consola, se podría ejecutar un script con la línea de comando
 <strong>R CMD BATCH</strong>, generándose un fichero con todos los resultados:</p>
@@ -375,7 +400,7 @@ head(datos2)
 <p><br />
 <br /></p>
 
-<h2>5. Enlaces de interés</h2>
+<h2>6. Enlaces de interés</h2>
 
 <ul>
 <li><p><a href="http://www.statmethods.net/">Quick-R</a>   Web con recursos para trabajar con R.</p></li>

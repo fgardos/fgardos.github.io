@@ -245,46 +245,31 @@ recodificación de variables, transformación de variables, categorización de v
 <pre><code class="r">datos &lt;- read.csv(&quot;riesgos.csv&quot;, header = T, sep = &quot;\t&quot;)
 </code></pre>
 
+<pre><code>#&gt; Warning in file(file, &quot;rt&quot;): cannot open file &#39;riesgos.csv&#39;: No such file
+#&gt; or directory
+</code></pre>
+
+<pre><code>#&gt; Error in file(file, &quot;rt&quot;): cannot open the connection
+</code></pre>
+
 <p>Echamos un vistazo a la estructura de los datos:</p>
 
 <pre><code class="r">str(datos)
 </code></pre>
 
-<pre><code>#&gt; &#39;data.frame&#39;:    91 obs. of  10 variables:
-#&gt;  $ id        : int  2 3 6 7 8 10 11 12 14 15 ...
-#&gt;  $ contrato  : int  3 1 5 1 3 2 1 3 1 1 ...
-#&gt;  $ jornada   : Factor w/ 2 levels &quot;completa&quot;,&quot;parcial&quot;: 1 1 1 1 1 1 1 1 1 1 ...
-#&gt;  $ turno     : int  1 1 1 1 1 1 1 1 3 1 ...
-#&gt;  $ carfisi   : Factor w/ 2 levels &quot;no&quot;,&quot;sí&quot;: 1 1 2 2 2 1 1 1 1 1 ...
-#&gt;  $ carpsiqui : Factor w/ 2 levels &quot;no&quot;,&quot;sí&quot;: 1 1 1 1 1 2 1 1 2 2 ...
-#&gt;  $ expquímica: Factor w/ 2 levels &quot;no&quot;,&quot;sí&quot;: 1 1 1 1 2 1 1 1 1 1 ...
-#&gt;  $ edad      : int  33 37 35 30 30 32 27 33 31 31 ...
-#&gt;  $ peso      : num  74 74 67 57 69 56 74 76 65 NA ...
-#&gt;  $ talla     : num  155 170 170 164 160 160 170 165 170 173 ...
+<pre><code>#&gt; Error in str(datos): object &#39;datos&#39; not found
 </code></pre>
 
 <pre><code class="r">head(datos)
 </code></pre>
 
-<pre><code>#&gt;   id contrato  jornada turno carfisi carpsiqui expquímica edad peso talla
-#&gt; 1  2        3 completa     1      no        no         no   33   74   155
-#&gt; 2  3        1 completa     1      no        no         no   37   74   170
-#&gt; 3  6        5 completa     1      sí        no         no   35   67   170
-#&gt; 4  7        1 completa     1      sí        no         no   30   57   164
-#&gt; 5  8        3 completa     1      sí        no         sí   30   69   160
-#&gt; 6 10        2 completa     1      no        sí         no   32   56   160
+<pre><code>#&gt; Error in head(datos): object &#39;datos&#39; not found
 </code></pre>
 
 <pre><code class="r">tail(datos)
 </code></pre>
 
-<pre><code>#&gt;    id contrato jornada turno carfisi carpsiqui expquímica edad peso talla
-#&gt; 86 73        5 parcial     1      no        no         no   32   65   159
-#&gt; 87 75        1 parcial     1      no        no         no   33   87   185
-#&gt; 88 76        1 parcial     1      sí        no         no   30   76   178
-#&gt; 89 80        4 parcial     1      no        no         no   29   65   153
-#&gt; 90 82        1 parcial     1      no        no         no   35   78   190
-#&gt; 91 86        4 parcial     4      no        no         no   28   65   167
+<pre><code>#&gt; Error in tail(datos): object &#39;datos&#39; not found
 </code></pre>
 
 <p>Con la función <strong>attach</strong> hacemos accesible la base de datos seleccionada:</p>
@@ -292,60 +277,50 @@ recodificación de variables, transformación de variables, categorización de v
 <pre><code class="r">attach(datos)
 </code></pre>
 
-<pre><code>#&gt; The following objects are masked from datos (position 3):
-#&gt; 
-#&gt;     carfisi, carpsiqui, contrato, edad, expquímica, id, jornada,
-#&gt;     peso, talla, turno
-#&gt; The following objects are masked from datos (position 9):
-#&gt; 
-#&gt;     carfisi, carpsiqui, contrato, edad, expquímica, id, jornada,
-#&gt;     peso, talla, turno
+<pre><code>#&gt; Error in attach(datos): object &#39;datos&#39; not found
 </code></pre>
 
 <p>Ordenamos los datos por la variable <strong>edad</strong> y guardamos esta nueva información en <strong>datos2</strong>:</p>
 
 <pre><code class="r">datos2 &lt;- datos[order(edad), ]
-head(datos2)
 </code></pre>
 
-<pre><code>#&gt;    id contrato  jornada turno carfisi carpsiqui expquímica edad peso talla
-#&gt; 57 78        1 completa     1      no        no         no   23   62   155
-#&gt; 15 20        1 completa     1      sí        sí         no   25   NA   175
-#&gt; 76 30        2  parcial     1      no        no         no   25   65   153
-#&gt; 31 44        4 completa     1      sí        no         no   26   56   150
-#&gt; 35 50        1 completa     1      no        sí         no   26   68   172
-#&gt; 44 61        2 completa     1      no        sí         no   26   96   175
+<pre><code>#&gt; Error in eval(expr, envir, enclos): object &#39;datos&#39; not found
+</code></pre>
+
+<pre><code class="r">head(datos2)
+</code></pre>
+
+<pre><code>#&gt; Error in head(datos2): object &#39;datos2&#39; not found
 </code></pre>
 
 <p>Ordenamos los datos por la variable <strong>edad</strong> en sentido decreciente y guardamos esta nueva información en <strong>datos2</strong>:</p>
 
 <pre><code class="r">datos2 &lt;- datos[order(-edad), ]
-head(datos2)
 </code></pre>
 
-<pre><code>#&gt;    id contrato  jornada turno carfisi carpsiqui expquímica edad peso talla
-#&gt; 11 16        3 completa     1      no        sí         no   39   75   158
-#&gt; 32 46        3 completa     1      no        no         no   39   54   160
-#&gt; 79 39        4  parcial     4      no        no         no   39   69   175
-#&gt; 21 28        1 completa     1      no        sí         no   38   62   155
-#&gt; 2   3        1 completa     1      no        no         no   37   74   170
-#&gt; 25 36        1 completa     1      sí        sí         no   37   65   167
+<pre><code>#&gt; Error in eval(expr, envir, enclos): object &#39;datos&#39; not found
+</code></pre>
+
+<pre><code class="r">head(datos2)
+</code></pre>
+
+<pre><code>#&gt; Error in head(datos2): object &#39;datos2&#39; not found
 </code></pre>
 
 <p>Ordenamos los datos: primero por la variable <strong>edad</strong> en sentido decreciente y en segundo lugar por la
 variable <strong>peso</strong> en sentido creciente y guardamos esta nueva información en <strong>datos2</strong>:</p>
 
 <pre><code class="r">datos2 &lt;- datos[order(-edad,peso), ]
-head(datos2)
 </code></pre>
 
-<pre><code>#&gt;    id contrato  jornada turno carfisi carpsiqui expquímica edad peso talla
-#&gt; 32 46        3 completa     1      no        no         no   39   54   160
-#&gt; 79 39        4  parcial     4      no        no         no   39   69   175
-#&gt; 11 16        3 completa     1      no        sí         no   39   75   158
-#&gt; 21 28        1 completa     1      no        sí         no   38   62   155
-#&gt; 28 40        1 completa     1      no        sí         no   37   54   165
-#&gt; 25 36        1 completa     1      sí        sí         no   37   65   167
+<pre><code>#&gt; Error in eval(expr, envir, enclos): object &#39;datos&#39; not found
+</code></pre>
+
+<pre><code class="r">head(datos2)
+</code></pre>
+
+<pre><code>#&gt; Error in head(datos2): object &#39;datos2&#39; not found
 </code></pre>
 
 <p><br />
@@ -359,80 +334,71 @@ head(datos2)
 <pre><code class="r">head(datos) 
 </code></pre>
 
-<pre><code>#&gt;   id contrato  jornada turno carfisi carpsiqui expquímica edad peso talla
-#&gt; 1  2        3 completa     1      no        no         no   33   74   155
-#&gt; 2  3        1 completa     1      no        no         no   37   74   170
-#&gt; 3  6        5 completa     1      sí        no         no   35   67   170
-#&gt; 4  7        1 completa     1      sí        no         no   30   57   164
-#&gt; 5  8        3 completa     1      sí        no         sí   30   69   160
-#&gt; 6 10        2 completa     1      no        sí         no   32   56   160
+<pre><code>#&gt; Error in head(datos): object &#39;datos&#39; not found
 </code></pre>
 
 <p>Seleccionamos las variables id, contrato y carfisi (son <strong>columnas</strong> en la base de datos). Guardamos la nueva información en <strong>datos2</strong>:</p>
 
 <pre><code class="r">datos2 &lt;- datos[, c(&quot;id&quot;, &quot;contrato&quot;, &quot;carfisi&quot;)]
-head(datos2)
 </code></pre>
 
-<pre><code>#&gt;   id contrato carfisi
-#&gt; 1  2        3      no
-#&gt; 2  3        1      no
-#&gt; 3  6        5      sí
-#&gt; 4  7        1      sí
-#&gt; 5  8        3      sí
-#&gt; 6 10        2      no
+<pre><code>#&gt; Error in eval(expr, envir, enclos): object &#39;datos&#39; not found
+</code></pre>
+
+<pre><code class="r">head(datos2)
+</code></pre>
+
+<pre><code>#&gt; Error in head(datos2): object &#39;datos2&#39; not found
 </code></pre>
 
 <p>Ahora seleccionamos los 3 primeros registros de la base <strong>riesgos</strong> y los guardaremos en <strong>datos2</strong>:</p>
 
 <pre><code class="r">datos2 &lt;- datos[1:3, ]
-head(datos2)
 </code></pre>
 
-<pre><code>#&gt;   id contrato  jornada turno carfisi carpsiqui expquímica edad peso talla
-#&gt; 1  2        3 completa     1      no        no         no   33   74   155
-#&gt; 2  3        1 completa     1      no        no         no   37   74   170
-#&gt; 3  6        5 completa     1      sí        no         no   35   67   170
+<pre><code>#&gt; Error in eval(expr, envir, enclos): object &#39;datos&#39; not found
+</code></pre>
+
+<pre><code class="r">head(datos2)
+</code></pre>
+
+<pre><code>#&gt; Error in head(datos2): object &#39;datos2&#39; not found
 </code></pre>
 
 <p>También podemos seleccionar registros (<strong>filas</strong> en la base de datos) que verifiquen algún criterio de selección. Por ejemplo,
  estamos interesamos en realizar una subselección de la base de datos <strong>riesgos</strong> que incluya sólo personas con <strong>jornada completa</strong>:</p>
 
 <pre><code class="r">datos2 &lt;- datos[jornada==&quot;completa&quot;,  ] 
-head(datos2)
 </code></pre>
 
-<pre><code>#&gt;   id contrato  jornada turno carfisi carpsiqui expquímica edad peso talla
-#&gt; 1  2        3 completa     1      no        no         no   33   74   155
-#&gt; 2  3        1 completa     1      no        no         no   37   74   170
-#&gt; 3  6        5 completa     1      sí        no         no   35   67   170
-#&gt; 4  7        1 completa     1      sí        no         no   30   57   164
-#&gt; 5  8        3 completa     1      sí        no         sí   30   69   160
-#&gt; 6 10        2 completa     1      no        sí         no   32   56   160
+<pre><code>#&gt; Error in eval(expr, envir, enclos): object &#39;datos&#39; not found
+</code></pre>
+
+<pre><code class="r">head(datos2)
+</code></pre>
+
+<pre><code>#&gt; Error in head(datos2): object &#39;datos2&#39; not found
 </code></pre>
 
 <pre><code class="r">table(datos2$jornada)
 </code></pre>
 
-<pre><code>#&gt; 
-#&gt; completa  parcial 
-#&gt;       67        0
+<pre><code>#&gt; Error in table(datos2$jornada): object &#39;datos2&#39; not found
 </code></pre>
 
 <p>Por último queremos realizar la siguiente subselección: sólo nos quedaremos con las variables  id, contrato y carfisi (<strong>columnas</strong>).
 Al mismo tiempo,  seleccionaremos los registros con <strong>jornada completa</strong> (<strong>filas</strong>):</p>
 
 <pre><code class="r">datos2 &lt;- datos[jornada==&quot;completa&quot;, c(&quot;id&quot;, &quot;contrato&quot;, &quot;carfisi&quot;)]
-head(datos2)
 </code></pre>
 
-<pre><code>#&gt;   id contrato carfisi
-#&gt; 1  2        3      no
-#&gt; 2  3        1      no
-#&gt; 3  6        5      sí
-#&gt; 4  7        1      sí
-#&gt; 5  8        3      sí
-#&gt; 6 10        2      no
+<pre><code>#&gt; Error in eval(expr, envir, enclos): object &#39;datos&#39; not found
+</code></pre>
+
+<pre><code class="r">head(datos2)
+</code></pre>
+
+<pre><code>#&gt; Error in head(datos2): object &#39;datos2&#39; not found
 </code></pre>
 
 <p><br />
@@ -448,46 +414,45 @@ head(datos2)
 <pre><code class="r">talla
 </code></pre>
 
-<pre><code>#&gt;  [1] 155 170 170 164 160 160 170 165 170 173 158 165 161 168 175 168 165
-#&gt; [18] 159 185 153 155 170 172 160 167 179 160 165 170 170 150 160 150 180
-#&gt; [35] 172 165 170 150 168 170 165 162 170 175 170 170 175 164 164 165 175
-#&gt; [52] 165 168 165 150 153 155 168 159 170 172 160 179 160 175 165 160 176
-#&gt; [69] 160 165 177 173 150 178 168 153 159 190 175 160 167 159 175 164 160
-#&gt; [86] 159 185 178 153 190 167
+<pre><code>#&gt; Error in eval(expr, envir, enclos): object &#39;talla&#39; not found
 </code></pre>
 
 <pre><code class="r">talla[talla &gt; 165] &lt;- 200 
-talla
 </code></pre>
 
-<pre><code>#&gt;  [1] 155 200 200 164 160 160 200 165 200 200 158 165 161 200 200 200 165
-#&gt; [18] 159 200 153 155 200 200 160 200 200 160 165 200 200 150 160 150 200
-#&gt; [35] 200 165 200 150 200 200 165 162 200 200 200 200 200 164 164 165 200
-#&gt; [52] 165 200 165 150 153 155 200 159 200 200 160 200 160 200 165 160 200
-#&gt; [69] 160 165 200 200 150 200 200 153 159 200 200 160 200 159 200 164 160
-#&gt; [86] 159 200 200 153 200 200
+<pre><code>#&gt; Error in talla[talla &gt; 165] &lt;- 200: object &#39;talla&#39; not found
+</code></pre>
+
+<pre><code class="r">talla
+</code></pre>
+
+<pre><code>#&gt; Error in eval(expr, envir, enclos): object &#39;talla&#39; not found
 </code></pre>
 
 <p><strong>3.2. O bien realizamos una recodificación de valores pero en otra variable distinta de la inicial:</strong></p>
 
 <pre><code class="r">peso2 &lt;- peso
-peso2[peso &gt; 75] &lt;- 99 
-peso
 </code></pre>
 
-<pre><code>#&gt;  [1] 74 74 67 57 69 56 74 76 65 NA 75 65 57 76 NA 68 78 65 87 59 62 76 93
-#&gt; [24] 64 65 87 54 54 75 76 56 54 70 70 68 88 90 65 58 65 88 89 60 96 90 60
-#&gt; [47] 60 54 85 69 70 52 68 78 57 59 62 76 78 76 93 64 87 54 69 54 67 98 67
-#&gt; [70] 87 76 83 57 76 76 65 78 78 69 67 75 50 69 56 50 65 87 76 65 78 65
+<pre><code>#&gt; Error in eval(expr, envir, enclos): object &#39;peso&#39; not found
+</code></pre>
+
+<pre><code class="r">peso2[peso &gt; 75] &lt;- 99 
+</code></pre>
+
+<pre><code>#&gt; Error in peso2[peso &gt; 75] &lt;- 99: object &#39;peso2&#39; not found
+</code></pre>
+
+<pre><code class="r">peso
+</code></pre>
+
+<pre><code>#&gt; Error in eval(expr, envir, enclos): object &#39;peso&#39; not found
 </code></pre>
 
 <pre><code class="r">peso2
 </code></pre>
 
-<pre><code>#&gt;  [1] 74 74 67 57 69 56 74 99 65 NA 75 65 57 99 NA 68 99 65 99 59 62 99 99
-#&gt; [24] 64 65 99 54 54 75 99 56 54 70 70 68 99 99 65 58 65 99 99 60 99 99 60
-#&gt; [47] 60 54 99 69 70 52 68 99 57 59 62 99 99 99 99 64 99 54 69 54 67 99 67
-#&gt; [70] 99 99 99 57 99 99 65 99 99 69 67 75 50 69 56 50 65 99 99 65 99 65
+<pre><code>#&gt; Error in eval(expr, envir, enclos): object &#39;peso2&#39; not found
 </code></pre>
 
 <p><br />
@@ -501,23 +466,15 @@ peso
 el peso en kg. entre el cuadrado de la altura en metros. Veamos como lo hacemos en R:</p>
 
 <pre><code class="r">datos[, &quot;IMC&quot;]  &lt;- peso / (talla/100)^2
-head(datos)
 </code></pre>
 
-<pre><code>#&gt;   id contrato  jornada turno carfisi carpsiqui expquímica edad peso talla
-#&gt; 1  2        3 completa     1      no        no         no   33   74   155
-#&gt; 2  3        1 completa     1      no        no         no   37   74   170
-#&gt; 3  6        5 completa     1      sí        no         no   35   67   170
-#&gt; 4  7        1 completa     1      sí        no         no   30   57   164
-#&gt; 5  8        3 completa     1      sí        no         sí   30   69   160
-#&gt; 6 10        2 completa     1      no        sí         no   32   56   160
-#&gt;        IMC
-#&gt; 1 30.80125
-#&gt; 2 18.50000
-#&gt; 3 16.75000
-#&gt; 4 21.19274
-#&gt; 5 26.95312
-#&gt; 6 21.87500
+<pre><code>#&gt; Error in eval(expr, envir, enclos): object &#39;peso&#39; not found
+</code></pre>
+
+<pre><code class="r">head(datos)
+</code></pre>
+
+<pre><code>#&gt; Error in head(datos): object &#39;datos&#39; not found
 </code></pre>
 
 <p><br />
@@ -541,28 +498,19 @@ En realidad buscamos los siguientes tramos de edad:  (minimo, 18.5], (18.5, 25],
 <pre><code class="r">summary(datos[,&quot;IMC&quot;])
 </code></pre>
 
-<pre><code>#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
-#&gt;   14.50   19.00   21.75   22.45   25.71   33.91       2
+<pre><code>#&gt; Error in summary(datos[, &quot;IMC&quot;]): object &#39;datos&#39; not found
 </code></pre>
 
 <pre><code class="r">datos[,&quot;IMC_grupos&quot;] &lt;- cut(datos$IMC, breaks = c(14,18.5,25,30,34), labels = c(&quot;bajo peso&quot;, &quot;normal&quot;, &quot;sobrepreso&quot;, &quot;obesidad&quot;))
-head(datos)
 </code></pre>
 
-<pre><code>#&gt;   id contrato  jornada turno carfisi carpsiqui expquímica edad peso talla
-#&gt; 1  2        3 completa     1      no        no         no   33   74   155
-#&gt; 2  3        1 completa     1      no        no         no   37   74   170
-#&gt; 3  6        5 completa     1      sí        no         no   35   67   170
-#&gt; 4  7        1 completa     1      sí        no         no   30   57   164
-#&gt; 5  8        3 completa     1      sí        no         sí   30   69   160
-#&gt; 6 10        2 completa     1      no        sí         no   32   56   160
-#&gt;        IMC IMC_grupos
-#&gt; 1 30.80125   obesidad
-#&gt; 2 18.50000  bajo peso
-#&gt; 3 16.75000  bajo peso
-#&gt; 4 21.19274     normal
-#&gt; 5 26.95312 sobrepreso
-#&gt; 6 21.87500     normal
+<pre><code>#&gt; Error in cut(datos$IMC, breaks = c(14, 18.5, 25, 30, 34), labels = c(&quot;bajo peso&quot;, : object &#39;datos&#39; not found
+</code></pre>
+
+<pre><code class="r">head(datos)
+</code></pre>
+
+<pre><code>#&gt; Error in head(datos): object &#39;datos&#39; not found
 </code></pre>
 
 <p>¿Cuántas personas tenemos en cada uno de las categorías de IMC?</p>
@@ -570,9 +518,7 @@ head(datos)
 <pre><code class="r">table(datos[,&quot;IMC_grupos&quot;])
 </code></pre>
 
-<pre><code>#&gt; 
-#&gt;  bajo peso     normal sobrepreso   obesidad 
-#&gt;         19         41         19         10
+<pre><code>#&gt; Error in table(datos[, &quot;IMC_grupos&quot;]): object &#39;datos&#39; not found
 </code></pre>
 
 <p><br />
