@@ -242,31 +242,46 @@ hr {
 <pre><code class="r">datos &lt;- read.csv(&quot;riesgos.csv&quot;, header = T, sep = &quot;\t&quot;)
 </code></pre>
 
-<pre><code>#&gt; Warning in file(file, &quot;rt&quot;): cannot open file &#39;riesgos.csv&#39;: No such file
-#&gt; or directory
-</code></pre>
-
-<pre><code>#&gt; Error in file(file, &quot;rt&quot;): cannot open the connection
-</code></pre>
-
 <p>Echamos un vistazo a la estructura de los datos:</p>
 
 <pre><code class="r">str(datos)
 </code></pre>
 
-<pre><code>#&gt; Error in str(datos): object &#39;datos&#39; not found
+<pre><code>#&gt; &#39;data.frame&#39;:    91 obs. of  10 variables:
+#&gt;  $ id        : int  2 3 6 7 8 10 11 12 14 15 ...
+#&gt;  $ contrato  : int  3 1 5 1 3 2 1 3 1 1 ...
+#&gt;  $ jornada   : Factor w/ 2 levels &quot;completa&quot;,&quot;parcial&quot;: 1 1 1 1 1 1 1 1 1 1 ...
+#&gt;  $ turno     : int  1 1 1 1 1 1 1 1 3 1 ...
+#&gt;  $ carfisi   : Factor w/ 2 levels &quot;no&quot;,&quot;sí&quot;: 1 1 2 2 2 1 1 1 1 1 ...
+#&gt;  $ carpsiqui : Factor w/ 2 levels &quot;no&quot;,&quot;sí&quot;: 1 1 1 1 1 2 1 1 2 2 ...
+#&gt;  $ expquímica: Factor w/ 2 levels &quot;no&quot;,&quot;sí&quot;: 1 1 1 1 2 1 1 1 1 1 ...
+#&gt;  $ edad      : int  33 37 35 30 30 32 27 33 31 31 ...
+#&gt;  $ peso      : num  74 74 67 57 69 56 74 76 65 NA ...
+#&gt;  $ talla     : num  155 170 170 164 160 160 170 165 170 173 ...
 </code></pre>
 
 <pre><code class="r">head(datos)
 </code></pre>
 
-<pre><code>#&gt; Error in head(datos): object &#39;datos&#39; not found
+<pre><code>#&gt;   id contrato  jornada turno carfisi carpsiqui expquímica edad peso talla
+#&gt; 1  2        3 completa     1      no        no         no   33   74   155
+#&gt; 2  3        1 completa     1      no        no         no   37   74   170
+#&gt; 3  6        5 completa     1      sí        no         no   35   67   170
+#&gt; 4  7        1 completa     1      sí        no         no   30   57   164
+#&gt; 5  8        3 completa     1      sí        no         sí   30   69   160
+#&gt; 6 10        2 completa     1      no        sí         no   32   56   160
 </code></pre>
 
 <pre><code class="r">tail(datos)
 </code></pre>
 
-<pre><code>#&gt; Error in tail(datos): object &#39;datos&#39; not found
+<pre><code>#&gt;    id contrato jornada turno carfisi carpsiqui expquímica edad peso talla
+#&gt; 86 73        5 parcial     1      no        no         no   32   65   159
+#&gt; 87 75        1 parcial     1      no        no         no   33   87   185
+#&gt; 88 76        1 parcial     1      sí        no         no   30   76   178
+#&gt; 89 80        4 parcial     1      no        no         no   29   65   153
+#&gt; 90 82        1 parcial     1      no        no         no   35   78   190
+#&gt; 91 86        4 parcial     4      no        no         no   28   65   167
 </code></pre>
 
 <p>Con la función <strong>attach</strong> hacemos accesible la base de datos seleccionada:</p>
@@ -274,7 +289,25 @@ hr {
 <pre><code class="r">attach(datos) 
 </code></pre>
 
-<pre><code>#&gt; Error in attach(datos): object &#39;datos&#39; not found
+<pre><code>#&gt; The following objects are masked from datos (pos = 3):
+#&gt; 
+#&gt;     carfisi, carpsiqui, contrato, edad, expquímica, id, jornada,
+#&gt;     peso, talla, turno
+#&gt; 
+#&gt; The following objects are masked from datos (pos = 4):
+#&gt; 
+#&gt;     carfisi, carpsiqui, contrato, edad, expquímica, id, jornada,
+#&gt;     peso, talla, turno
+#&gt; 
+#&gt; The following objects are masked from datos (pos = 5):
+#&gt; 
+#&gt;     carfisi, carpsiqui, contrato, edad, expquímica, id, jornada,
+#&gt;     peso, talla, turno
+#&gt; 
+#&gt; The following objects are masked from datos (pos = 6):
+#&gt; 
+#&gt;     carfisi, carpsiqui, contrato, edad, expquímica, id, jornada,
+#&gt;     peso, talla, turno
 </code></pre>
 
 <p>Describimos cada una de las variables categóricas: <strong>jornada</strong>, <strong>carfisi</strong> y <strong>expquímica</strong>:</p>
@@ -282,34 +315,38 @@ hr {
 <pre><code class="r">table(jornada)
 </code></pre>
 
-<pre><code>#&gt; Error in table(jornada): object &#39;jornada&#39; not found
+<pre><code>#&gt; jornada
+#&gt; completa  parcial 
+#&gt;       67       24
 </code></pre>
 
 <pre><code class="r">table(carfisi)
 </code></pre>
 
-<pre><code>#&gt; Error in table(carfisi): object &#39;carfisi&#39; not found
+<pre><code>#&gt; carfisi
+#&gt; no sí 
+#&gt; 57 34
 </code></pre>
 
 <pre><code class="r">table(expquímica)
 </code></pre>
 
-<pre><code>#&gt; Error in table(expquímica): object &#39;expquímica&#39; not found
+<pre><code>#&gt; expquímica
+#&gt; no sí 
+#&gt; 86  5
 </code></pre>
 
 <p>Nos interesa describir la relación entre <strong>jornada</strong> y cada uno de los dos riesgos mencionados anteriormente. 
 Utilizaremos el comando <strong>table</strong> para dos variables que nos proporciona una <strong>tabla de contingencia</strong>:</p>
 
 <pre><code class="r">tabla1 &lt;- table(jornada,carfisi)
+tabla1
 </code></pre>
 
-<pre><code>#&gt; Error in table(jornada, carfisi): object &#39;jornada&#39; not found
-</code></pre>
-
-<pre><code class="r">tabla1
-</code></pre>
-
-<pre><code>#&gt; Error in eval(expr, envir, enclos): object &#39;tabla1&#39; not found
+<pre><code>#&gt;           carfisi
+#&gt; jornada    no sí
+#&gt;   completa 38 29
+#&gt;   parcial  19  5
 </code></pre>
 
 <p>También nos gustaría visualizar esta relación: </p>
@@ -317,26 +354,22 @@ Utilizaremos el comando <strong>table</strong> para dos variables que nos propor
 <pre><code class="r">plot(tabla1, col = c(&quot;red&quot;, &quot;blue&quot;), main = &quot;jornada vs. carga física&quot;)
 </code></pre>
 
-<pre><code>#&gt; Error in plot(tabla1, col = c(&quot;red&quot;, &quot;blue&quot;), main = &quot;jornada vs. carga física&quot;): object &#39;tabla1&#39; not found
-</code></pre>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfgAAAH4CAIAAAApSmgoAAAACXBIWXMAAAsSAAALEgHS3X78AAAaHklEQVR4nO3de3AV9dnA8WdJQm7kAklKBJIUg4ZMQAIiiENAlEzQQLkEgiBIKw6XSgc7XPpWqUwBB8QUpFyEoiikSOXeWkrRaFHLGJQCpQiRgJHECxggF2IOCTln3z/2nUxeSJBY3D15zvfzB5Ns9px9fszyZdlzEgzTNAUAoFcrpwcAAPywCD0AKEfoAUA5Qg8AyhF6AFCO0AOAcoQeAJQj9ACgHKEHAOUIPQAoR+gBQDlCDwDKEXoAUI7QA4ByhB4AlCP0AKAcoQcA5Qg9AChH6AFAOUIPAMoRegBQjtADgHKEHgCUI/RoHn9/f8Mwrly5YvNxjx8/bhhG165dbT6uNzh8+PCdd97p5+f3+9//XkRqa2s7d+48dOjQq1evNrr/lStXDMPw9/e3d0x4L04FNE9KSorb7TYMw+lBfMiLL75YWFjYv3//1NRUEdm0aVNsbOwbb7wREBDQ6P6GYaSkpPj5+dk7JryXYZqm0zMA3+348ePdu3dPSkoqKChweha7DR06dM+ePTt27Bg1apTTs6BF4tYNmqfhrZtvv/129uzZd955Z5s2bXr16rVx40bruuHcuXOGYURHR3/44Ye9e/fevn17/ZZdu3Z169YtLCxs2LBh58+ft54zLy+vX79+YWFhbdu2ffDBBw8fPmxt/+abb7Kystq2bdujR4/8/PyGYzT1kHqTJk0yDGPx4sXWp3PmzDEMY9asWSLy/vvvp6WlhYWFxcTEDBs27Pjx4zde8sWLFx9//PH4+Pjw8PCGx2p0huvXLiJlZWXjxo1r165d37599+7daxhG7969b3IhvXv33rNnj4hkZWXNmzfvmtsyja7lmn2aNT90MoHmsG4IuFwuj8fz4IMPikinTp0efvjhoKAgEXnxxRdN0/z6669FJDQ0NC4uTkS2bdtmbfHz8wsLC+vVq1erVq1E5IknnjBNs7i4ODg42M/P7/777+/bt6+IJCQkeDyeurq6u+66y3r+1NRU6yFJSUk3eEjDOa04pqWlWZ/26NFDRD788MNz586FhoYahjF8+PABAwaISIcOHb799tum1ut2u++55x4R6d69e//+/UUkKirq3LlzTc1w/do9Ho/1wNtuuy01NTUsLExE7r777ptfiDX8zJkzjxw54nK5rN9J0zSbWkvDfZo7/609W+AlCD2apz707733noh07NixrKzMNM133nlHRCIjI91utxU7EVm8ePGFCxeuXLlSv+Xo0aOmaW7cuNFKj2ma+/fvz8jIWLBggWmaZWVl1nVoaWnp7t27RSQ5Obmqqsrj8UyePLk+9E09pOGcNTU1bdu29fPzu3TpkvVPh7i4OI/H89Zbb4lIYmLi2bNnTdN86qmnsrKyCgsLm1rvvn37RKRLly5Xr141TXPChAl+fn4vv/xyUzNcv3brNyo+Pr68vNzj8cyYMaM+9DezENM0MzMzRWTXrl2maTaMeFNrabhPc+e/FecIvA63bvA9HTt2TER+8pOfREZGisgDDzzQsWPH8vLyL774wtohKCho7ty5UVFRgYGB1hbrJoyIWNeY1dXVIjJw4MClS5dWVVU98MADcXFxdXV1IlJXV3fkyBERGT16tHXROnHixPpDN/WQhuO1bt161KhRbrf77bffzsvLE5ExY8YYhtGrV6+EhIQzZ84kJCR07969VatWzz//fJcuXZpa5ieffCIiaWlpVgpzc3Pr6uomT5584xkart1ayPDhwyMiIgzDmDJlSrMWcgM3s5bvNz+UIfT4nszrXsa37q643W7r09DQUGvLNTuISMM37Rw4cKBXr17r169PTU197bXXoqOjre3W89Tv2fCpmnrINcaOHSsie/fuffvtt0UkOztbRKKioj799NNNmzZlZWWdPXt22bJlKSkpVg0bZY1h/WXW0I1naLj22tpaEal/D0zDdz3e5EKacjNr+X7zQxlCj+/JuoH+5ptvVlRUiMj+/ftLSkoiIiISEhKa9Ty7du1yu91TpkxZtmxZnz59Ll68aG23rv23b99eXV1tmuYf//jH73zINQYNGhQTE2OFPj4+vk+fPiKye/fuJ598MjAwcPv27aWlpRkZGTU1Nfv373e73Z9//vnnn39e/xeVJTk5WUT27dtn9XrSpElt2rTJzc29yRlExHrv/5tvvllVVSUiGzZsaO5CmtLUWm7t/NDA6XtHaGEavhg7aNAgEYmLi8vMzAwODpb//2JsVFRU/aOu2XLy5EkRSUxMNE0zJydHRNq0aTN06NDY2FjrtPzyyy9ra2tvv/12EYmPj+/Zs6e13bpH39RDrp922rRp1ldnzZplbbFu4wQFBT38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" alt="plot of chunk unnamed-chunk-6"/> </p>
 
 <pre><code class="r">tabla2 &lt;- table(jornada, expquímica)
+tabla2
 </code></pre>
 
-<pre><code>#&gt; Error in table(jornada, expquímica): object &#39;jornada&#39; not found
-</code></pre>
-
-<pre><code class="r">tabla2
-</code></pre>
-
-<pre><code>#&gt; Error in eval(expr, envir, enclos): object &#39;tabla2&#39; not found
+<pre><code>#&gt;           expquímica
+#&gt; jornada    no sí
+#&gt;   completa 65  2
+#&gt;   parcial  21  3
 </code></pre>
 
 <pre><code class="r">plot(tabla2, col = c(&quot;red&quot;, &quot;blue&quot;), main = &quot;jornada vs. exposición química&quot;)
 </code></pre>
 
-<pre><code>#&gt; Error in plot(tabla2, col = c(&quot;red&quot;, &quot;blue&quot;), main = &quot;jornada vs. exposición química&quot;): object &#39;tabla2&#39; not found
-</code></pre>
+<p><img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-6"/> </p>
 
 <p>A partir de los datos que nos ofrece la muestra, ¿crees que hay una relación entre el tipo de <strong>jornada</strong> y estar expuesto a <strong>carga física</strong>? 
  ¿Qué opinas de la relación entre el tipo de <strong>jornada</strong> y  <strong>exposición química</strong>?
@@ -355,13 +388,24 @@ una mayor exposición a carga física y menor exposición química que las perso
 <pre><code class="r">chisq.test(tabla1)
 </code></pre>
 
-<pre><code>#&gt; Error in is.data.frame(x): object &#39;tabla1&#39; not found
+<pre><code>#&gt; 
+#&gt;  Pearson&#39;s Chi-squared test with Yates&#39; continuity correction
+#&gt; 
+#&gt; data:  tabla1
+#&gt; X-squared = 2.9067, df = 1, p-value = 0.08821
 </code></pre>
 
 <pre><code class="r">chisq.test(tabla2)
 </code></pre>
 
-<pre><code>#&gt; Error in is.data.frame(x): object &#39;tabla2&#39; not found
+<pre><code>#&gt; Warning in chisq.test(tabla2): Chi-squared approximation may be incorrect
+</code></pre>
+
+<pre><code>#&gt; 
+#&gt;  Pearson&#39;s Chi-squared test with Yates&#39; continuity correction
+#&gt; 
+#&gt; data:  tabla2
+#&gt; X-squared = 1.5209, df = 1, p-value = 0.2175
 </code></pre>
 
 <p>Con un nivel de significación de 0.05, no podríamos rechazar en ninguno de los dos escenarios la hipótesis nula, 

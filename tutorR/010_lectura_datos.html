@@ -253,14 +253,7 @@ Cuando tenemos un fichero en excel, es aconsejable
 guardarlo previamente en formato <a href="http://es.wikipedia.org/wiki/CSV/">csv</a>
 y posteriormente lo leemos desde R con la función <strong>read.csv</strong>:</p>
 
-<pre><code class="r">datos &lt;- read.csv(&quot;riesgos.csv&quot;, header = T, sep = &quot;\t&quot;)
-</code></pre>
-
-<pre><code>#&gt; Warning in file(file, &quot;rt&quot;): cannot open file &#39;riesgos.csv&#39;: No such file
-#&gt; or directory
-</code></pre>
-
-<pre><code>#&gt; Error in file(file, &quot;rt&quot;): cannot open the connection
+<pre><code class="r">datos &lt;- read.csv(&quot;datos/riesgos.csv&quot;, header = T, sep = &quot;\t&quot;)
 </code></pre>
 
 <p>Para obtener información detallada de esta función de lectura:</p>
@@ -286,37 +279,62 @@ que el proceso de lectura ha sido correcto o bien si debemos realizar algún aju
 <pre><code class="r">head(datos)
 </code></pre>
 
-<pre><code>#&gt; Error in head(datos): object &#39;datos&#39; not found
+<pre><code>#&gt;   id contrato  jornada turno carfisi carpsiqui expquímica edad peso talla
+#&gt; 1  2        3 completa     1      no        no         no   33   74   155
+#&gt; 2  3        1 completa     1      no        no         no   37   74   170
+#&gt; 3  6        5 completa     1      sí        no         no   35   67   170
+#&gt; 4  7        1 completa     1      sí        no         no   30   57   164
+#&gt; 5  8        3 completa     1      sí        no         sí   30   69   160
+#&gt; 6 10        2 completa     1      no        sí         no   32   56   160
 </code></pre>
 
 <pre><code class="r">tail(datos)
 </code></pre>
 
-<pre><code>#&gt; Error in tail(datos): object &#39;datos&#39; not found
+<pre><code>#&gt;    id contrato jornada turno carfisi carpsiqui expquímica edad peso talla
+#&gt; 86 73        5 parcial     1      no        no         no   32   65   159
+#&gt; 87 75        1 parcial     1      no        no         no   33   87   185
+#&gt; 88 76        1 parcial     1      sí        no         no   30   76   178
+#&gt; 89 80        4 parcial     1      no        no         no   29   65   153
+#&gt; 90 82        1 parcial     1      no        no         no   35   78   190
+#&gt; 91 86        4 parcial     4      no        no         no   28   65   167
 </code></pre>
 
 <pre><code class="r">colnames(datos)
 </code></pre>
 
-<pre><code>#&gt; Error in is.data.frame(x): object &#39;datos&#39; not found
+<pre><code>#&gt;  [1] &quot;id&quot;         &quot;contrato&quot;   &quot;jornada&quot;    &quot;turno&quot;      &quot;carfisi&quot;   
+#&gt;  [6] &quot;carpsiqui&quot;  &quot;expquímica&quot; &quot;edad&quot;       &quot;peso&quot;       &quot;talla&quot;
 </code></pre>
 
 <pre><code class="r">dim(datos)
 </code></pre>
 
-<pre><code>#&gt; Error in eval(expr, envir, enclos): object &#39;datos&#39; not found
+<pre><code>#&gt; [1] 91 10
 </code></pre>
 
 <pre><code class="r">summary(datos)
 </code></pre>
 
-<pre><code>#&gt; Error in summary(datos): object &#39;datos&#39; not found
+<pre><code>#&gt;        id          contrato         jornada       turno       carfisi
+#&gt;  Min.   : 1.0   Min.   :1.000   completa:67   Min.   :1.000   no:57  
+#&gt;  1st Qu.:23.5   1st Qu.:1.000   parcial :24   1st Qu.:1.000   sí:34  
+#&gt;  Median :46.0   Median :1.000                 Median :1.000          
+#&gt;  Mean   :46.0   Mean   :1.857                 Mean   :1.209          
+#&gt;  3rd Qu.:68.5   3rd Qu.:3.000                 3rd Qu.:1.000          
+#&gt;  Max.   :91.0   Max.   :5.000                 Max.   :4.000          
+#&gt;                                                                      
+#&gt;  carpsiqui expquímica      edad            peso           talla      
+#&gt;  no:46     no:86      Min.   :23.00   Min.   :50.00   Min.   :150.0  
+#&gt;  sí:45     sí: 5      1st Qu.:29.00   1st Qu.:62.00   1st Qu.:160.0  
+#&gt;                       Median :31.00   Median :69.00   Median :165.0  
+#&gt;                       Mean   :31.45   Mean   :70.34   Mean   :166.3  
+#&gt;                       3rd Qu.:34.00   3rd Qu.:76.00   3rd Qu.:171.0  
+#&gt;                       Max.   :39.00   Max.   :98.00   Max.   :190.0  
+#&gt;                                       NA&#39;s   :2
 </code></pre>
 
 <pre><code class="r">attach(datos)
-</code></pre>
-
-<pre><code>#&gt; Error in attach(datos): object &#39;datos&#39; not found
 </code></pre>
 
 <p><br />
@@ -327,14 +345,7 @@ que el proceso de lectura ha sido correcto o bien si debemos realizar algún aju
 <p>La lectura de datos en formato <strong>txt</strong> es similar a la de los ficheros <strong>csv</strong>. Se utiliza la función
 <strong>read.table</strong>:</p>
 
-<pre><code class="r">datos &lt;- read.table(&quot;estres.txt&quot;, header = T, sep = &quot;\t&quot;)
-</code></pre>
-
-<pre><code>#&gt; Warning in file(file, &quot;rt&quot;): cannot open file &#39;estres.txt&#39;: No such file
-#&gt; or directory
-</code></pre>
-
-<pre><code>#&gt; Error in file(file, &quot;rt&quot;): cannot open the connection
+<pre><code class="r">datos &lt;- read.table(&quot;datos/estres.txt&quot;, header = T, sep = &quot;\t&quot;)
 </code></pre>
 
 <p>Para obtener información detallada de esta función de lectura:</p>

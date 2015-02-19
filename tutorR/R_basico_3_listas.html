@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-<title>Guardar resultados en R</title>
+<title>Introduccion a R: listas</title>
 
 <script type="text/javascript">
 window.onload = function() {
@@ -201,213 +201,334 @@ hr {
 </head>
 
 <body>
-<h1>Guardar resultados en R</h1>
+<h1>Introduccion a R: listas</h1>
 
-<p><a href="http://bioinfo.cipf.es/" title="webpage of department">Francisco García García</a> <em>(2015-01-21)</em>  </p>
+<p><a href="http://www.dmontaner.com" title="my home page">David Montaner</a> <em>(2014-03-31)</em>  </p>
 
-<hr/>
-
-<h3>0. Introducción</h3>
-
-<h3>1. Guardando automáticamente toda la información NO gráfica en un fichero de texto</h3>
-
-<h3>2. Guardando automáticamente toda la información gráfica en una carpeta</h3>
-
-<h3>3. Guardando una base de datos (data.frame o matrix) en un fichero de texto</h3>
-
-<h3>4. Salvamos los objetos generados en la sesión de R en un fichero .RData</h3>
-
-<h3>5. Guardar todos los resultados tras ejecutar un script de R desde la consola</h3>
-
-<h3>6. Enlaces de interés</h3>
+<p>Script que introduce los comandos mas basicos de <code>R</code> relacionados con <strong>listas</strong>.</p>
 
 <hr/>
 
-<p><br />
-<br />
-<br /></p>
-
-<h2>0. Introducción</h2>
-
-<p>R genera diversos tipos de resultados: tablas, gráficos&hellip;. ¿cómo podemos guardar estos resultados?</p>
-
-<p>Existen varias opciones. Escogeremos aquella que mejor se ajuste a lo que queremos realizar después con los resultados. </p>
-
-<p><br />
-<br /></p>
-
-<h2>1. Guardando automáticamente toda la información NO gráfica en un fichero de texto</h2>
-
-<p>En ocasiones sólo queremos salvar los resultados no gráficos. En ese caso utilizaremos las función <strong>sink</strong> y
-especificaremos un fichero de texto donde se guardarán los resultados obtenidos.</p>
-
-<p>Primero comprobamos cuál es el <strong>working directory</strong>:</p>
-
-<pre><code class="r">getwd() 
+<pre><code class="r"># rm (list = ls ())
 </code></pre>
 
-<pre><code>#&gt; [1] &quot;/media/USB_120G_/github/tutorR&quot;
+<h2>LISTAS</h2>
+
+<p>Un grupo de objetos de R</p>
+
+<pre><code class="r">unVector &lt;- 1:10
+unVector
 </code></pre>
 
-<p>Es posible cambiar el <strong>working directory</strong> con la función <strong>setwd()</strong>
-Con la función <strong>sink</strong> decimos que la salida de R será el fichero de texto que indiquemos:</p>
-
-<pre><code class="r">sink(&quot;resultados.txt&quot;) 
-a &lt;- c(1, 2, 3, 5)
-summary(a)
+<pre><code>#&gt;  [1]  1  2  3  4  5  6  7  8  9 10
 </code></pre>
 
-<pre><code>#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-#&gt;    1.00    1.75    2.50    2.75    3.50    5.00
+<pre><code class="r">otroVector &lt;- LETTERS ##LETTERS es una variable definida internamente en R
+otroVector
 </code></pre>
 
-<pre><code class="r">print(a) 
+<pre><code>#&gt;  [1] &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;D&quot; &quot;E&quot; &quot;F&quot; &quot;G&quot; &quot;H&quot; &quot;I&quot; &quot;J&quot; &quot;K&quot; &quot;L&quot; &quot;M&quot; &quot;N&quot; &quot;O&quot; &quot;P&quot; &quot;Q&quot;
+#&gt; [18] &quot;R&quot; &quot;S&quot; &quot;T&quot; &quot;U&quot; &quot;V&quot; &quot;W&quot; &quot;X&quot; &quot;Y&quot; &quot;Z&quot;
 </code></pre>
 
-<pre><code>#&gt; [1] 1 2 3 5
+<pre><code class="r">unaMatriz &lt;- cbind (1:10, 10:1)
+rownames (unaMatriz) &lt;- LETTERS[1:10]  #con nombres en las filas
+colnames (unaMatriz) &lt;- letters[1:2]   #y en las columnas
+unaMatriz
 </code></pre>
 
-<p>Si ya hemos terminado de guardar resultados, redirigimos otra vez la salida a la pantalla (como estaba al principio)</p>
-
-<pre><code class="r">sink() 
-print(a)
+<pre><code>#&gt;    a  b
+#&gt; A  1 10
+#&gt; B  2  9
+#&gt; C  3  8
+#&gt; D  4  7
+#&gt; E  5  6
+#&gt; F  6  5
+#&gt; G  7  4
+#&gt; H  8  3
+#&gt; I  9  2
+#&gt; J 10  1
 </code></pre>
 
-<pre><code>#&gt; [1] 1 2 3 5
+<p>se pueden agrupar en una estructura de lista</p>
+
+<pre><code class="r">lista0 &lt;- list (unVector, otroVector, unaMatriz)
+class (lista0)
 </code></pre>
 
-<p><br />
-<br /></p>
-
-<h2>2. Guardando automáticamente toda la información  gráfica en una carpeta</h2>
-
-<p>Trabajando con Rstudio es posible guardar cada uno de los gráficos que generamos desde la pestaña Plots. </p>
-
-<p>Existen otras opciones para guardar cada uno de los gráficos que generamos en nuestra sesión de R.</p>
-
-<p>Antes de generar el gráfico
-utilizamos png (u otras como tiff, jpeg,&hellip; dependiendo del formato que nos interese). </p>
-
-<p>Tras la función que define el gráfico incluiremos dev.off() para cerrar la ventana gráfica actual</p>
-
-<pre><code class="r">png(file=&quot;grafico1.png&quot;, height = 600, width = 600, pointsize = 30)
-a &lt;- c(1, 2, 3, 5)
-boxplot(a, col = &quot;red&quot;)
-dev.off()
+<pre><code>#&gt; [1] &quot;list&quot;
 </code></pre>
 
-<pre><code>#&gt; png 
-#&gt;   2
+<pre><code class="r">length (lista0)
 </code></pre>
 
-<p>información detallada en ?png</p>
-
-<h2>3. Guardando una base de datos (data.frame o matrix)</h2>
-
-<p>Tras generar una base de datos (data.frame o matrix) es posible guardar ese objeto específico 
-con varias funciones como <strong>write.table</strong>, <strong>write.csv</strong> o <strong>write.matrix</strong>:</p>
-
-<pre><code class="r">talla &lt;- c(150, 156, 166, 175, 175)
-peso &lt;- c(75, 70, 72, 80, 55)
-provincia &lt;- c(&quot;Alicante&quot;, &quot;Castellon&quot;, &quot;Valencia&quot;, &quot;Valencia&quot;, &quot;Alicante&quot;)
-datos &lt;- as.data.frame(cbind(talla, peso, provincia))
-datos
+<pre><code>#&gt; [1] 3
 </code></pre>
 
-<pre><code>#&gt;   talla peso provincia
-#&gt; 1   150   75  Alicante
-#&gt; 2   156   70 Castellon
-#&gt; 3   166   72  Valencia
-#&gt; 4   175   80  Valencia
-#&gt; 5   175   55  Alicante
+<p>Acceso por orden o posicion</p>
+
+<pre><code class="r">lista0[1]
 </code></pre>
 
-<pre><code class="r">write.table(datos, &quot;misdatos.txt&quot;, sep = &quot;\t&quot;, quote = F, row.names = F)
+<pre><code>#&gt; [[1]]
+#&gt;  [1]  1  2  3  4  5  6  7  8  9 10
 </code></pre>
 
-<p><br />
-<br /></p>
-
-<h2>4. Salvamos los objetos generados en la sesión de R en un fichero .RData</h2>
-
-<p>Con las funciones <strong>save</strong> y <strong>save.image</strong> es posible guardar todos o algunos específicos objetos generados 
-en la sesión de R. Luego los volveremos a cargar en la sesión con la función <strong>load</strong>. Vemos un ejemplo:</p>
-
-<pre><code class="r">talla &lt;- c(150, 156, 166, 175, 175)
-peso &lt;- c(75, 70, 72, 80, 55)
-provincia &lt;- c(&quot;Alicante&quot;, &quot;Castellon&quot;, &quot;Valencia&quot;, &quot;Valencia&quot;, &quot;Alicante&quot;)
-datos &lt;- as.data.frame(cbind(talla, peso, provincia))
-datos
+<pre><code class="r">lista0[1:2]
 </code></pre>
 
-<pre><code>#&gt;   talla peso provincia
-#&gt; 1   150   75  Alicante
-#&gt; 2   156   70 Castellon
-#&gt; 3   166   72  Valencia
-#&gt; 4   175   80  Valencia
-#&gt; 5   175   55  Alicante
+<pre><code>#&gt; [[1]]
+#&gt;  [1]  1  2  3  4  5  6  7  8  9 10
+#&gt; 
+#&gt; [[2]]
+#&gt;  [1] &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;D&quot; &quot;E&quot; &quot;F&quot; &quot;G&quot; &quot;H&quot; &quot;I&quot; &quot;J&quot; &quot;K&quot; &quot;L&quot; &quot;M&quot; &quot;N&quot; &quot;O&quot; &quot;P&quot; &quot;Q&quot;
+#&gt; [18] &quot;R&quot; &quot;S&quot; &quot;T&quot; &quot;U&quot; &quot;V&quot; &quot;W&quot; &quot;X&quot; &quot;Y&quot; &quot;Z&quot;
 </code></pre>
 
-<p>Más objetos:</p>
-
-<pre><code class="r">datos2 &lt;- datos[, 1:2]
-head(datos2)
+<pre><code class="r">lista0[c(1,3)]  #reordenaciones
 </code></pre>
 
-<pre><code>#&gt;   talla peso
-#&gt; 1   150   75
-#&gt; 2   156   70
-#&gt; 3   166   72
-#&gt; 4   175   80
-#&gt; 5   175   55
+<pre><code>#&gt; [[1]]
+#&gt;  [1]  1  2  3  4  5  6  7  8  9 10
+#&gt; 
+#&gt; [[2]]
+#&gt;    a  b
+#&gt; A  1 10
+#&gt; B  2  9
+#&gt; C  3  8
+#&gt; D  4  7
+#&gt; E  5  6
+#&gt; F  6  5
+#&gt; G  7  4
+#&gt; H  8  3
+#&gt; I  9  2
+#&gt; J 10  1
 </code></pre>
 
-<p>¿Qué objetos tenemos en la sesión?</p>
+<p>OBS: el acceso con un un unico corchete conserva la estructura de lista</p>
 
-<pre><code class="r">ls()
+<pre><code class="r">class (lista0[1])
 </code></pre>
 
-<pre><code>#&gt; [1] &quot;a&quot;         &quot;base&quot;      &quot;bases&quot;     &quot;datos&quot;     &quot;datos2&quot;    &quot;peso&quot;     
-#&gt; [7] &quot;provincia&quot; &quot;talla&quot;
+<pre><code>#&gt; [1] &quot;list&quot;
 </code></pre>
 
-<p>Guardamos todos los objetos en un único fichero específico de R:</p>
-
-<pre><code class="r">save.image(file = &quot;resultados.RData&quot;)
+<pre><code class="r">length (lista0[1])
 </code></pre>
 
-<p>Cargamos todos los objetos en la sesión de R:</p>
-
-<pre><code class="r">load(&quot;resultados.RData&quot;)
+<pre><code>#&gt; [1] 1
 </code></pre>
 
-<p>Si sólo queremos guardar alguno o algunos objetos, se puede salvar con la función <strong>save</strong>:</p>
+<p>Hay que usar dos corchetes para obtener el objeto guardado sin la &#39;envoltura&#39; de lista</p>
 
-<pre><code class="r">save(datos, datos2, file = &quot;dosresultados.RData&quot;)
+<pre><code class="r">lista0[[1]]
 </code></pre>
 
-<p><br />
-<br /></p>
-
-<h2>5. Guardar todos los resultados tras ejecutar un script de R desde la consola</h2>
-
-<p>Si tenemos acceso a una consola, se podría ejecutar un script con la línea de comando
-<strong>R CMD BATCH</strong>, generándose un fichero con todos los resultados:</p>
-
-<pre><code class="r">#R CMD BATCH script.R
+<pre><code>#&gt;  [1]  1  2  3  4  5  6  7  8  9 10
 </code></pre>
 
-<p><br />
-<br /></p>
+<pre><code class="r">class (lista0[[1]])
+</code></pre>
 
-<h2>6. Enlaces de interés</h2>
+<pre><code>#&gt; [1] &quot;integer&quot;
+</code></pre>
 
-<ul>
-<li><p><a href="http://www.statmethods.net/">Quick-R</a>   Web con recursos para trabajar con R.</p></li>
-<li><p><a href="http://www.r-tutor.com/">r-tutor</a>  An R Introduction to Statistics.</p></li>
-</ul>
+<pre><code class="r">length (lista0[[1]])
+</code></pre>
 
-<hr/>
+<pre><code>#&gt; [1] 10
+</code></pre>
+
+<p>Los elementos de la lista se pueden nombrar</p>
+
+<pre><code class="r">names (lista0)
+</code></pre>
+
+<pre><code>#&gt; NULL
+</code></pre>
+
+<pre><code class="r">names (lista0) &lt;- c(&quot;uno&quot;, &quot;dos&quot;, &quot;tres&quot;)
+names (lista0)
+</code></pre>
+
+<pre><code>#&gt; [1] &quot;uno&quot;  &quot;dos&quot;  &quot;tres&quot;
+</code></pre>
+
+<p>De hecho se puede generar la lista ya con los nombres</p>
+
+<pre><code class="r">lista1 &lt;- list (uno=unVector, dos=otroVector, tres=unaMatriz)
+lista1
+</code></pre>
+
+<pre><code>#&gt; $uno
+#&gt;  [1]  1  2  3  4  5  6  7  8  9 10
+#&gt; 
+#&gt; $dos
+#&gt;  [1] &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;D&quot; &quot;E&quot; &quot;F&quot; &quot;G&quot; &quot;H&quot; &quot;I&quot; &quot;J&quot; &quot;K&quot; &quot;L&quot; &quot;M&quot; &quot;N&quot; &quot;O&quot; &quot;P&quot; &quot;Q&quot;
+#&gt; [18] &quot;R&quot; &quot;S&quot; &quot;T&quot; &quot;U&quot; &quot;V&quot; &quot;W&quot; &quot;X&quot; &quot;Y&quot; &quot;Z&quot;
+#&gt; 
+#&gt; $tres
+#&gt;    a  b
+#&gt; A  1 10
+#&gt; B  2  9
+#&gt; C  3  8
+#&gt; D  4  7
+#&gt; E  5  6
+#&gt; F  6  5
+#&gt; G  7  4
+#&gt; H  8  3
+#&gt; I  9  2
+#&gt; J 10  1
+</code></pre>
+
+<p>Entonces se puede acceder por nombre a los elemnetos de la lista</p>
+
+<pre><code class="r">lista1[&quot;uno&quot;]
+</code></pre>
+
+<pre><code>#&gt; $uno
+#&gt;  [1]  1  2  3  4  5  6  7  8  9 10
+</code></pre>
+
+<pre><code class="r">lista1[c(&quot;uno&quot;, &quot;dos&quot;)]
+</code></pre>
+
+<pre><code>#&gt; $uno
+#&gt;  [1]  1  2  3  4  5  6  7  8  9 10
+#&gt; 
+#&gt; $dos
+#&gt;  [1] &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;D&quot; &quot;E&quot; &quot;F&quot; &quot;G&quot; &quot;H&quot; &quot;I&quot; &quot;J&quot; &quot;K&quot; &quot;L&quot; &quot;M&quot; &quot;N&quot; &quot;O&quot; &quot;P&quot; &quot;Q&quot;
+#&gt; [18] &quot;R&quot; &quot;S&quot; &quot;T&quot; &quot;U&quot; &quot;V&quot; &quot;W&quot; &quot;X&quot; &quot;Y&quot; &quot;Z&quot;
+</code></pre>
+
+<p>Con las mismas consideraciones sobre los corchetes</p>
+
+<pre><code class="r">class  (lista1[&quot;uno&quot;])  #corchete unico mantiene la estructura de lista
+</code></pre>
+
+<pre><code>#&gt; [1] &quot;list&quot;
+</code></pre>
+
+<pre><code class="r">length (lista1[&quot;uno&quot;])  #alrededor del objeto
+</code></pre>
+
+<pre><code>#&gt; [1] 1
+</code></pre>
+
+<pre><code class="r">class  (lista1[[&quot;uno&quot;]])  #corchete doble extrae el objeto de la posicion
+</code></pre>
+
+<pre><code>#&gt; [1] &quot;integer&quot;
+</code></pre>
+
+<pre><code class="r">length (lista1[[&quot;uno&quot;]])  #en su propio formato
+</code></pre>
+
+<pre><code>#&gt; [1] 10
+</code></pre>
+
+<p>Cuando las listas tiene nombres se puede ademas utilizar la notacion <strong>$</strong>
+que es equivalente a la del doble corchete</p>
+
+<pre><code class="r">lista1$uno
+</code></pre>
+
+<pre><code>#&gt;  [1]  1  2  3  4  5  6  7  8  9 10
+</code></pre>
+
+<pre><code class="r">class  (lista1$uno)
+</code></pre>
+
+<pre><code>#&gt; [1] &quot;integer&quot;
+</code></pre>
+
+<pre><code class="r">length (lista1$uno)
+</code></pre>
+
+<pre><code>#&gt; [1] 10
+</code></pre>
+
+<h2>Loops sobre listas</h2>
+
+<p>Loops generales</p>
+
+<pre><code class="r">for (i in lista1) {
+  print (class (i))
+}
+</code></pre>
+
+<pre><code>#&gt; [1] &quot;integer&quot;
+#&gt; [1] &quot;character&quot;
+#&gt; [1] &quot;matrix&quot;
+</code></pre>
+
+<p>Loops especificos para listas. Son mas elegante y eficiente en R</p>
+
+<pre><code class="r">sapply (lista1, class)
+</code></pre>
+
+<pre><code>#&gt;         uno         dos        tres 
+#&gt;   &quot;integer&quot; &quot;character&quot;    &quot;matrix&quot;
+</code></pre>
+
+<pre><code class="r">lapply (lista1, class)
+</code></pre>
+
+<pre><code>#&gt; $uno
+#&gt; [1] &quot;integer&quot;
+#&gt; 
+#&gt; $dos
+#&gt; [1] &quot;character&quot;
+#&gt; 
+#&gt; $tres
+#&gt; [1] &quot;matrix&quot;
+</code></pre>
+
+<pre><code class="r">sapply (lista1, length)
+</code></pre>
+
+<pre><code>#&gt;  uno  dos tres 
+#&gt;   10   26   20
+</code></pre>
+
+<pre><code class="r">lapply (lista1, length)
+</code></pre>
+
+<pre><code>#&gt; $uno
+#&gt; [1] 10
+#&gt; 
+#&gt; $dos
+#&gt; [1] 26
+#&gt; 
+#&gt; $tres
+#&gt; [1] 20
+</code></pre>
+
+<pre><code class="r">sapply (lista1, dim)
+</code></pre>
+
+<pre><code>#&gt; $uno
+#&gt; NULL
+#&gt; 
+#&gt; $dos
+#&gt; NULL
+#&gt; 
+#&gt; $tres
+#&gt; [1] 10  2
+</code></pre>
+
+<pre><code class="r">lapply (lista1, dim)
+</code></pre>
+
+<pre><code>#&gt; $uno
+#&gt; NULL
+#&gt; 
+#&gt; $dos
+#&gt; NULL
+#&gt; 
+#&gt; $tres
+#&gt; [1] 10  2
+</code></pre>
 
 </body>
 

@@ -239,20 +239,7 @@ se cuantificaron el número de células en cada uno de los dos grupos descritos 
 
 <p>Leemos los datos:</p>
 
-<pre><code class="r">setwd(&quot;/home/paco/Desktop/\ Dropbox/github/tutorR&quot;)
-</code></pre>
-
-<pre><code>#&gt; Error in setwd(&quot;/home/paco/Desktop/ Dropbox/github/tutorR&quot;): cannot change working directory
-</code></pre>
-
-<pre><code class="r">datos &lt;- read.csv(&quot;ful.csv&quot;,sep = &quot;\t&quot;, header = T)
-</code></pre>
-
-<pre><code>#&gt; Warning in file(file, &quot;rt&quot;): cannot open file &#39;ful.csv&#39;: No such file or
-#&gt; directory
-</code></pre>
-
-<pre><code>#&gt; Error in file(file, &quot;rt&quot;): cannot open the connection
+<pre><code class="r">datos &lt;- read.csv(&quot;datos/ful.csv&quot;,sep = &quot;\t&quot;, header = T)
 </code></pre>
 
 <p>Estructura de los datos: </p>
@@ -260,7 +247,24 @@ se cuantificaron el número de células en cada uno de los dos grupos descritos 
 <pre><code class="r">datos
 </code></pre>
 
-<pre><code>#&gt; Error in eval(expr, envir, enclos): object &#39;datos&#39; not found
+<pre><code>#&gt;    experiment group    t24     t48     t72     t96
+#&gt; 1        NE61    WT 110000  250000  355000  870000
+#&gt; 2        NE61    KO 115000  185000  446666 1085000
+#&gt; 3        NE62    WT 155000  285000  260000  580000
+#&gt; 4        NE62    KO 125000  245000  290000  600000
+#&gt; 5        NE63    WT 185000 1540000 2445000 2020000
+#&gt; 6        NE63    KO 190000  610000 1990000 2310000
+#&gt; 7        NE63    KO 110000  805000 2680000 1500000
+#&gt; 8        NE64    WT 290000  185000  420000  480000
+#&gt; 9        NE64    KO 170000  235000  410000  473333
+#&gt; 10       NE78    WT   9250   16000   20750   36000
+#&gt; 11       NE78    KO  27500   33500   40000   75500
+#&gt; 12       NE79    WT   7000   45000   56500   82000
+#&gt; 13       NE79    KO   7500   76750  123500  291000
+#&gt; 14       NE80    WT  18500   60500  154750  200000
+#&gt; 15       NE80    WT   9250   34750  133000  190000
+#&gt; 16       NE80    KO   4500   16750   90500  118000
+#&gt; 17       NE80    KO   5500   18250  102000  140000
 </code></pre>
 
 <p>Dimensión de la matriz de datos (número de filas x número de columnas):</p>
@@ -268,7 +272,7 @@ se cuantificaron el número de células en cada uno de los dos grupos descritos 
 <pre><code class="r">dim(datos)
 </code></pre>
 
-<pre><code>#&gt; Error in eval(expr, envir, enclos): object &#39;datos&#39; not found
+<pre><code>#&gt; [1] 17  6
 </code></pre>
 
 <p><br />
@@ -281,34 +285,41 @@ se cuantificaron el número de células en cada uno de los dos grupos descritos 
 <pre><code class="r">summary(datos)
 </code></pre>
 
-<pre><code>#&gt; Error in summary(datos): object &#39;datos&#39; not found
+<pre><code>#&gt;  experiment group       t24              t48               t72         
+#&gt;  NE61:2     KO:9   Min.   :  4500   Min.   :  16000   Min.   :  20750  
+#&gt;  NE62:2     WT:8   1st Qu.:  9250   1st Qu.:  34750   1st Qu.: 102000  
+#&gt;  NE63:3            Median :110000   Median : 185000   Median : 260000  
+#&gt;  NE64:2            Mean   : 90529   Mean   : 273029   Mean   : 589274  
+#&gt;  NE78:2            3rd Qu.:155000   3rd Qu.: 250000   3rd Qu.: 420000  
+#&gt;  NE79:2            Max.   :290000   Max.   :1540000   Max.   :2680000  
+#&gt;  NE80:4                                                                
+#&gt;       t96         
+#&gt;  Min.   :  36000  
+#&gt;  1st Qu.: 140000  
+#&gt;  Median : 473333  
+#&gt;  Mean   : 650049  
+#&gt;  3rd Qu.: 870000  
+#&gt;  Max.   :2310000  
+#&gt; 
 </code></pre>
 
 <p>¿Hay mucha variabilidad entre los 16 experimentos? Sí. Lo comprobamos determianando las desviaciones típicas en cada punto de tiempo y
 grupo experimental:</p>
 
 <pre><code class="r">desviaciones_wt &lt;- apply(datos[datos$group==&quot;WT&quot;,c(&quot;t24&quot;, &quot;t48&quot;, &quot;t72&quot;, &quot;t96&quot;)], 2, sd)
+desviaciones_wt
 </code></pre>
 
-<pre><code>#&gt; Error in apply(datos[datos$group == &quot;WT&quot;, c(&quot;t24&quot;, &quot;t48&quot;, &quot;t72&quot;, &quot;t96&quot;)], : object &#39;datos&#39; not found
-</code></pre>
-
-<pre><code class="r">desviaciones_wt
-</code></pre>
-
-<pre><code>#&gt; Error in eval(expr, envir, enclos): object &#39;desviaciones_wt&#39; not found
+<pre><code>#&gt;      t24      t48      t72      t96 
+#&gt; 105681.7 510869.8 805809.8 655089.9
 </code></pre>
 
 <pre><code class="r">desviaciones_ko &lt;- apply(datos[datos$group==&quot;KO&quot;,c(&quot;t24&quot;, &quot;t48&quot;, &quot;t72&quot;, &quot;t96&quot;)], 2, sd)
+desviaciones_ko
 </code></pre>
 
-<pre><code>#&gt; Error in apply(datos[datos$group == &quot;KO&quot;, c(&quot;t24&quot;, &quot;t48&quot;, &quot;t72&quot;, &quot;t96&quot;)], : object &#39;datos&#39; not found
-</code></pre>
-
-<pre><code class="r">desviaciones_ko
-</code></pre>
-
-<pre><code>#&gt; Error in eval(expr, envir, enclos): object &#39;desviaciones_ko&#39; not found
+<pre><code>#&gt;       t24       t48       t72       t96 
+#&gt;  73719.81 279962.80 961517.23 761723.40
 </code></pre>
 
 <p>Los descriptivos apuntan a que los datos proporcionados en cada experimento tienen una escala muy distinta entre ellos. 
@@ -320,10 +331,15 @@ Estas diferencias se observan dentro de cada grupo experimental y entre ellos.
 <p>Previamente preparamos el input que precisa la función de representación del gráfico: </p>
 
 <pre><code class="r">library(reshape)
-mdata &lt;- melt(datos, id=c(&quot;experiment&quot;,&quot;group&quot;))
 </code></pre>
 
-<pre><code>#&gt; Error in melt(datos, id = c(&quot;experiment&quot;, &quot;group&quot;)): object &#39;datos&#39; not found
+<pre><code>#&gt; Error in library(reshape): there is no package called &#39;reshape&#39;
+</code></pre>
+
+<pre><code class="r">mdata &lt;- melt(datos, id=c(&quot;experiment&quot;,&quot;group&quot;))
+</code></pre>
+
+<pre><code>#&gt; Error in eval(expr, envir, enclos): could not find function &quot;melt&quot;
 </code></pre>
 
 <pre><code class="r">colnames(mdata) &lt;- c(&quot;experiment&quot;, &quot;group&quot;, &quot;time&quot;, &quot;growth&quot;)
@@ -419,15 +435,7 @@ en cada experimento, considerando como referencia el nivel de crecimiento en el 
 <p>A continuación dividimos todos los datos de cada experimento por el valor de crecimiento en el tiempo 24:</p>
 
 <pre><code class="r">ndatos  &lt;- datos[,c(&quot;t24&quot;, &quot;t48&quot;, &quot;t72&quot;, &quot;t96&quot;)] /  datos[,&quot;t24&quot;] 
-</code></pre>
-
-<pre><code>#&gt; Error in eval(expr, envir, enclos): object &#39;datos&#39; not found
-</code></pre>
-
-<pre><code class="r">ndatos &lt;- cbind(datos[,c(&quot;experiment&quot;, &quot;group&quot;)],ndatos)
-</code></pre>
-
-<pre><code>#&gt; Error in cbind(datos[, c(&quot;experiment&quot;, &quot;group&quot;)], ndatos): object &#39;datos&#39; not found
+ndatos &lt;- cbind(datos[,c(&quot;experiment&quot;, &quot;group&quot;)],ndatos)
 </code></pre>
 
 <p>Estos son los datos normalizados considerando como referencia basal el tiempo 24 en cada experimento:</p>
@@ -435,7 +443,24 @@ en cada experimento, considerando como referencia el nivel de crecimiento en el 
 <pre><code class="r">ndatos
 </code></pre>
 
-<pre><code>#&gt; Error in eval(expr, envir, enclos): object &#39;ndatos&#39; not found
+<pre><code>#&gt;    experiment group t24       t48       t72       t96
+#&gt; 1        NE61    WT   1  2.272727  3.227273  7.909091
+#&gt; 2        NE61    KO   1  1.608696  3.884052  9.434783
+#&gt; 3        NE62    WT   1  1.838710  1.677419  3.741935
+#&gt; 4        NE62    KO   1  1.960000  2.320000  4.800000
+#&gt; 5        NE63    WT   1  8.324324 13.216216 10.918919
+#&gt; 6        NE63    KO   1  3.210526 10.473684 12.157895
+#&gt; 7        NE63    KO   1  7.318182 24.363636 13.636364
+#&gt; 8        NE64    WT   1  0.637931  1.448276  1.655172
+#&gt; 9        NE64    KO   1  1.382353  2.411765  2.784312
+#&gt; 10       NE78    WT   1  1.729730  2.243243  3.891892
+#&gt; 11       NE78    KO   1  1.218182  1.454545  2.745455
+#&gt; 12       NE79    WT   1  6.428571  8.071429 11.714286
+#&gt; 13       NE79    KO   1 10.233333 16.466667 38.800000
+#&gt; 14       NE80    WT   1  3.270270  8.364865 10.810811
+#&gt; 15       NE80    WT   1  3.756757 14.378378 20.540541
+#&gt; 16       NE80    KO   1  3.722222 20.111111 26.222222
+#&gt; 17       NE80    KO   1  3.318182 18.545455 25.454545
 </code></pre>
 
 <p>Describimos los datos normalizados:</p>
@@ -443,7 +468,7 @@ en cada experimento, considerando como referencia el nivel de crecimiento en el 
 <pre><code class="r">mdata &lt;- melt(ndatos, id=c(&quot;experiment&quot;,&quot;group&quot;))
 </code></pre>
 
-<pre><code>#&gt; Error in melt(ndatos, id = c(&quot;experiment&quot;, &quot;group&quot;)): object &#39;ndatos&#39; not found
+<pre><code>#&gt; Error in eval(expr, envir, enclos): could not find function &quot;melt&quot;
 </code></pre>
 
 <pre><code class="r">colnames(mdata) &lt;- c(&quot;experiment&quot;, &quot;group&quot;, &quot;time&quot;, &quot;growth&quot;)
